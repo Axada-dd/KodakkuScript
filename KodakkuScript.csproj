@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>12</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Dalamud">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Dalamud.dll</HintPath>
+      </Reference>
+      <Reference Include="ECommons">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\installedPlugins\KodakkuAssist\0.4.4.0\ECommons.dll</HintPath>
+      </Reference>
+      <Reference Include="KodakkuAssist">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\installedPlugins\KodakkuAssist\0.4.4.0\KodakkuAssist.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="Wotou">
+        <HintPath>..\..\FF14act\AEAssist 国服 1024\ACR\Wotou\Wotou.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
