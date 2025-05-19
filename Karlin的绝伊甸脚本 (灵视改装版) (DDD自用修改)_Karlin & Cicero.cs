@@ -108,6 +108,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public bool _____Phase4_Settings_____ { get; set; } = true;
         public Phase4_Strats_Of_The_First_Half Phase4_Strat_Of_The_First_Half { get; set; } 
         public ScriptColor Phase4_Colour_Of_Somber_Dance { get; set; } 
+        [UserSetting("P4二运 自动防击退")]
+        public bool Phase4_FJT { get; set; } = true;
         [UserSetting("P4二运 标记玩家 (Make sure only one in the party enables this!/小队内只能有一人启用此选项!)")]
         public bool Phase4_Mark_Players_During_The_Second_Half { get; set; } = false;
         public Phase4_Player_Types_To_Be_Marked Phase4_Player_Type_To_Be_Marked { get; set; } 
@@ -10309,6 +10311,18 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             phase4_residueIdsFromEastToWest = [0, 0, 0, 0];
             phase4_guidanceOfResiduesHasBeenGenerated = false;
         }
+
+        [ScriptMethod(name: "P4_防击退", eventType: EventTypeEnum.StatusAdd,
+            eventCondition: ["StatusID:regex:^(2452)$"], userControl: false)]
+        public void P4_防击退(Event @event, ScriptAccessory accessory)
+        {
+            if (parse!=43) return;
+            if(!Phase4_FJT)return;
+            System.Threading.Thread.Sleep(5000);
+            accessory.Method.SendChat($"/ac 亲疏自行");
+            accessory.Method.SendChat($"/ac 沉稳咏唱");
+            accessory.Method.SendChat($"/e 防击退");
+        }
         [ScriptMethod(name: "P4_时间结晶_Buff收集", eventType: EventTypeEnum.StatusAdd, eventCondition: ["StatusID:regex:^(326[34]|2454|246[0123])$"], userControl: false)]
         public void P4_时间结晶_Buff收集(Event @event, ScriptAccessory accessory)
         {
@@ -12389,7 +12403,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public void Phase5_Guidance_Of_Fulgent_Blade_璀璨之刃指路(Event @event, ScriptAccessory accessory)
         {
             if (Phase == "P5地火计算完成")//限制分组
-             {
+            {
                  lock (drawLock)
                  {
                      Phase = "P5运算结束";
