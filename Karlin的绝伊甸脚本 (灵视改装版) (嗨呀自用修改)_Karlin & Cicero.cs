@@ -35,7 +35,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
     {
         private const string UpdateInfo =
             """
-            .01 版本更新了p5 地火与挡枪的绿玩移动（未测试所以默认关闭），如需启用，请进入设置开启，并且关闭bmr ai以免冲突
+            .01 版本更新了P3眩晕后自动调整面向
             """;
 
 
@@ -45,24 +45,23 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         ***** Please read the note here carefully before running the script! *****
         ***** 请在使用此脚本前仔细阅读此处的说明! *****
 
+        使用国服野队通用攻略，
+        P1 MMW双竖，  P2 镜子找最近的，光爆两个攻略都有，
+        P3 MMW, P4 人群  二运可以自动标记，根据标记指路，只有Y字击退
+        P5 挡刀 T近战远程N
+
+
         
-        脚本描述区域有字数限制,没法放下整个描述,所以我把描述部分移到了Discord上的标注消息中。
-        去可达鸭的Discord,在"示例与分享"频道中找到帖子"Cicero's Kodakku Assist 个人在线脚本库",选择"已标注消息",就可以查看脚本描述了。
-        对于电脑端,"已标注消息"在聊天栏的右上角。对于手机端,点击右上角的箭头标志,然后可以找到一个名为"标注"的标签页。
-        阅读完中文部分大约需要花费5分钟的时间。请先完整地阅读脚本描述再使用本脚本，谢谢！
+        更新了P3眩晕后自动调整面向
         """;
 
         #region User_Settings_用户设置
 
-        [UserSetting("-----全局设置----- (No actual meaning for this setting/此设置无实际意义)")]
-        public bool _____Global_Settings_____ { get; set; } = true;
         public bool Enable_Text_Prompts { get; set; } = true;
         public Languages_Of_Prompts Language_Of_Prompts { get; set; }
 
-        public bool _____Phase1_Settings_____ { get; set; } = true;
         public ScriptColor Phase1_Colour_Of_Burnt_Strike_Characteristics { get; set; }
 
-        public bool _____Phase2_Settings_____ { get; set; } = true;
         public ScriptColor Phase2_Colour_Of_Mirror_Rough_Guidance { get; set; }
         public ScriptColor Phase2_Colour_Of_Potential_Dangerous_Zones { get; set; }
         public Phase2_Initial_Protean_Positions_Of_Light_Rampant Phase2_Initial_Protean_Position_Of_Light_Rampant { get; set; }
@@ -71,7 +70,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public ScriptColor Phase2_Colour_Of_Rough_Paths { get; set; }
         public ScriptColor Phase2_Colour_Of_Sphere_AOEs { get; set; }
 
-        public bool _____Phase3_Settings_____ { get; set; } = true;
         public ScriptColor Phase3_Colour_Of_Rough_Guidance { get; set; }
         public ScriptColor Phase3_Colour_Of_The_Penultimate_Apocalypse { get; set; }
         [UserSetting("P3自动面向")] public bool Phase3_Auto_Face { get; set; } = true;
@@ -79,8 +77,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public Tanks Phase3_Tank_Who_Baits_Darkest_Dance { get; set; } = Tanks.MT;
         public ScriptColor Phase3_Colour_Of_Darkest_Dance { get; set; }
 
-        //[UserSetting("-----P4设置----- (No actual meaning for this setting/此设置无实际意义)")]
-        public bool _____Phase4_Settings_____ { get; set; } = true;
         public ScriptColor Phase4_Colour_Of_Somber_Dance { get; set; }
         [UserSetting("P4二运 自动防击退")]
         public bool Phase4_FJT { get; set; } = true;
@@ -100,8 +96,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public float Phase4_Length_Of_Drachen_Wanderer_Hitboxes { get; set; }
         public ScriptColor Phase4_Colour_Of_Drachen_Wanderer_Hitboxes { get; set; }
 
-        //[UserSetting("-----P5设置----- (No actual meaning for this setting/此设置无实际意义)")]
-        public bool _____Phase5_Settings_____ { get; set; } = true;
         public ScriptColor Phase5_Colour_Of_Fulgent_Blade { get; set; }
         public ScriptColor Phase5_Colour_Of_The_Current_Guidance_Step { get; set; }
         public ScriptColor Phase5_Colour_Of_The_Next_Guidance_Step { get; set; }
@@ -292,7 +286,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             OT_ST
 
         }
-        
+
 
 
         public enum Phase2_Initial_Protean_Positions_Of_Light_Rampant
@@ -400,61 +394,61 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 this.Coord4 = coord4;
             }
         }
-            public class UlRelativity
-    {
-        // ReSharper disable once NullableWarningSuppressionIsUsed
-        public ScriptAccessory sa { get; set; } = null!;
-        public int RelativeNorth { get; set; } = -1;
-        // ReSharper disable once NullableWarningSuppressionIsUsed
-        public PriorityDict pd { get; set; } = null!;
-        // ReSharper disable once NullableWarningSuppressionIsUsed
-        public Counter ct { get; set; } = null!;
-        public List<int> TetherDirection { get; set; } = Enumerable.Repeat(0, 8).ToList();  // 0无，1加速，2减速
-        public List<int> RelativeDirection { get; set; } = [4, 6, 5, 3, 7, 1, 2, 0];
-        public List<int> TrueDirection { get; set; } = Enumerable.Repeat(0, 8).ToList();
-        public void Init(ScriptAccessory accessory, PriorityDict priorityDict, Counter counter)
+        public class UlRelativity
         {
-            sa = accessory;
-            pd = priorityDict;
-            ct = counter;
-            TetherDirection = Enumerable.Repeat(0, 8).ToList();
-            TrueDirection = Enumerable.Repeat(0, 8).ToList();
-            RelativeNorth = -1;
-        }
-
-        public void BuildTrueDirection()
-        {
-            // 找到减速灯
-            var slowTetherIdx = TetherDirection.IndexOf(2, 0);
-            var checkIdx1 = (slowTetherIdx - 2 + 8) % 8;
-            var checkIdx2 = (slowTetherIdx + 2 + 8) % 8;
-            RelativeNorth = TetherDirection[checkIdx1] == 1 ? checkIdx1 : checkIdx2;
-            sa.Log.Debug($"根据减速线{slowTetherIdx}计算相对北，检查{checkIdx1}与{checkIdx2}，得到{RelativeNorth}为相对北");
-
-            for (int i = 0; i < 8; i++)
+            // ReSharper disable once NullableWarningSuppressionIsUsed
+            public ScriptAccessory sa { get; set; } = null!;
+            public int RelativeNorth { get; set; } = -1;
+            // ReSharper disable once NullableWarningSuppressionIsUsed
+            public PriorityDict pd { get; set; } = null!;
+            // ReSharper disable once NullableWarningSuppressionIsUsed
+            public Counter ct { get; set; } = null!;
+            public List<int> TetherDirection { get; set; } = Enumerable.Repeat(0, 8).ToList();  // 0无，1加速，2减速
+            public List<int> RelativeDirection { get; set; } = [4, 6, 5, 3, 7, 1, 2, 0];
+            public List<int> TrueDirection { get; set; } = Enumerable.Repeat(0, 8).ToList();
+            public void Init(ScriptAccessory accessory, PriorityDict priorityDict, Counter counter)
             {
-                var jobIdx = pd.SelectSpecificPriorityIndex(i).Key;
-                var dir = (RelativeDirection[i] + RelativeNorth) % 8;
-                TrueDirection[jobIdx] = dir;
-                sa.Log.Debug($"字典顺序{i}, {sa.GetPlayerJobByIndex(jobIdx)}({jobIdx}), 需去方位{dir}。");
+                sa = accessory;
+                pd = priorityDict;
+                ct = counter;
+                TetherDirection = Enumerable.Repeat(0, 8).ToList();
+                TrueDirection = Enumerable.Repeat(0, 8).ToList();
+                RelativeNorth = -1;
             }
+
+            public void BuildTrueDirection()
+            {
+                // 找到减速灯
+                var slowTetherIdx = TetherDirection.IndexOf(2, 0);
+                var checkIdx1 = (slowTetherIdx - 2 + 8) % 8;
+                var checkIdx2 = (slowTetherIdx + 2 + 8) % 8;
+                RelativeNorth = TetherDirection[checkIdx1] == 1 ? checkIdx1 : checkIdx2;
+                sa.Log.Debug($"根据减速线{slowTetherIdx}计算相对北，检查{checkIdx1}与{checkIdx2}，得到{RelativeNorth}为相对北");
+
+                for (int i = 0; i < 8; i++)
+                {
+                    var jobIdx = pd.SelectSpecificPriorityIndex(i).Key;
+                    var dir = (RelativeDirection[i] + RelativeNorth) % 8;
+                    TrueDirection[jobIdx] = dir;
+                    sa.Log.Debug($"字典顺序{i}, {sa.GetPlayerJobByIndex(jobIdx)}({jobIdx}), 需去方位{dir}。");
+                }
+            }
+
+            public void ShowMessage()
+            {
+                var str = "\n ---- [时间压缩] ----\n";
+                str += $"相对北：{RelativeNorth}。\n";
+                str += $"各职能位置：{sa.BuildListStr(TrueDirection)}";
+
+                sa.Log.Debug(str);
+            }
+
+            public int GetDirection(int jobIdx)
+            {
+                return TrueDirection[jobIdx];
+            }
+
         }
-
-        public void ShowMessage()
-        {
-            var str = "\n ---- [时间压缩] ----\n";
-            str += $"相对北：{RelativeNorth}。\n";
-            str += $"各职能位置：{sa.BuildListStr(TrueDirection)}";
-
-            sa.Log.Debug(str);
-        }
-
-        public int GetDirection(int jobIdx)
-        {
-            return TrueDirection[jobIdx];
-        }
-
-    }
 
         #endregion
 
@@ -1768,7 +1762,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     }
 
-                        accessory.TTS(prompt);
+                    accessory.TTS(prompt);
 
 
                 }
@@ -1934,7 +1928,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                    accessory.TTS(prompt);
+                accessory.TTS(prompt);
 
 
             }
@@ -3279,7 +3273,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                    accessory.TTS(prompt);
+                accessory.TTS(prompt);
 
 
             }
@@ -3541,7 +3535,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                    accessory.TTS(prompt);
+                accessory.TTS(prompt);
 
 
             }
@@ -4263,7 +4257,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             currentproperty.Name = "Phase2_Initial_Positions_Before_Light_Rampant_光之失控前初始站位";
             currentproperty.Scale = new(2);
             currentproperty.Owner = accessory.Data.Me;
-            currentproperty.TargetPosition = RotatePoint(new Vector3(100, 0, 95), new Vector3(100, 0, 100), (float)(float.Pi / 4 * rotation)); 
+            currentproperty.TargetPosition = RotatePoint(new Vector3(100, 0, 95), new Vector3(100, 0, 100), (float)(float.Pi / 4 * rotation));
             currentproperty.ScaleMode |= ScaleMode.YByDistance;
             currentproperty.Color = accessory.Data.DefaultSafeColor;
             currentproperty.DestoryAt = 5000;
@@ -4673,7 +4667,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                    accessory.TTS(prompt);
+                accessory.TTS(prompt);
 
 
             }
@@ -5683,7 +5677,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("场中集合分摊");
+            accessory.TTS("场中集合分摊");
 
 
         }
@@ -5766,7 +5760,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("让Boss面向正北");
+            accessory.TTS("让Boss面向正北");
 
         }
 
@@ -6224,7 +6218,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("分摊");
+            accessory.TTS("分摊");
 
 
         }
@@ -6486,7 +6480,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("分散");
+            accessory.TTS("分散");
 
 
         }
@@ -7011,7 +7005,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                        accessory.TTS("最远死刑");
+                accessory.TTS("最远死刑");
 
 
             }
@@ -7034,7 +7028,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     }
 
-                            accessory.TTS("远离MT");
+                    accessory.TTS("远离MT");
 
 
                 }
@@ -7054,7 +7048,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     }
 
-                            accessory.TTS("远离ST");
+                    accessory.TTS("远离ST");
 
 
                 }
@@ -7223,7 +7217,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             }
 
         }
-        
+
         [ScriptMethod(name: "Phase3 Determine The Final Position Of The Boss 确定Boss的最终位置",
             eventType: EventTypeEnum.StartCasting,
             eventCondition: ["ActionId:40300"],
@@ -7304,7 +7298,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS($"{((inTheNorth) ? ("Boss即将出现在正北") : ("Boss即将出现在正南"))}");
+            accessory.TTS($"{((inTheNorth) ? ("Boss即将出现在正北") : ("Boss即将出现在正南"))}");
 
 
         }
@@ -7434,7 +7428,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("集合并远离未来的碎片");
+            accessory.TTS("集合并远离未来的碎片");
 
 
         }
@@ -7458,7 +7452,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("跑！");
+            accessory.TTS("跑！");
 
 
         }
@@ -8434,7 +8428,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 /*accessory.Method.SendChat($"/ac 亲疏自行");
                 accessory.Method.SendChat($"/ac 沉稳咏唱");*/
                 accessory.Method.SendChat($"/e 防击退");
-                accessory.Method.UseAction(accessory.Data.Me, isMagic ? 7559u:7548u);
+                accessory.Method.UseAction(accessory.Data.Me, isMagic ? 7559u : 7548u);
             });
             //System.Threading.Thread.Sleep(5000);
 
@@ -10589,7 +10583,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS($"{((goLeft) ? ("左侧分摊") : ("右侧分摊"))}");
+            accessory.TTS($"{((goLeft) ? ("左侧分摊") : ("右侧分摊"))}");
 
 
         }
@@ -10987,7 +10981,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                                accessory.TTS("等待挑衅后退避");
+                        accessory.TTS("等待挑衅后退避");
 
 
                     }
@@ -11051,7 +11045,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                                accessory.TTS("立即挑衅！");
+                        accessory.TTS("立即挑衅！");
 
 
                     }
@@ -11138,7 +11132,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                                accessory.TTS("等待挑衅后退避");
+                        accessory.TTS("等待挑衅后退避");
 
 
                     }
@@ -11202,7 +11196,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                                accessory.TTS("立即挑衅！");
+                        accessory.TTS("立即挑衅！");
 
 
                     }
@@ -12521,7 +12515,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-                    accessory.TTS("挡枪然后换组");
+            accessory.TTS("挡枪然后换组");
 
 
         }
@@ -12891,221 +12885,221 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
 }
 
-    #region 类函数
-    public class PriorityDict
+#region 类函数
+public class PriorityDict
+{
+    // ReSharper disable once NullableWarningSuppressionIsUsed
+    public ScriptAccessory accessory { get; set; } = null!;
+    // ReSharper disable once NullableWarningSuppressionIsUsed
+    public Dictionary<int, int> Priorities { get; set; } = null!;
+    public string Annotation { get; set; } = "";
+    public int ActionCount { get; set; } = 0;
+
+    public void Init(ScriptAccessory _accessory, string annotation, int partyNum = 8)
     {
-        // ReSharper disable once NullableWarningSuppressionIsUsed
-        public ScriptAccessory accessory { get; set; } = null!;
-        // ReSharper disable once NullableWarningSuppressionIsUsed
-        public Dictionary<int, int> Priorities { get; set; } = null!;
-        public string Annotation { get; set; } = "";
-        public int ActionCount { get; set; } = 0;
-
-        public void Init(ScriptAccessory _accessory, string annotation, int partyNum = 8)
+        accessory = _accessory;
+        Priorities = new Dictionary<int, int>();
+        for (var i = 0; i < partyNum; i++)
         {
-            accessory = _accessory;
-            Priorities = new Dictionary<int, int>();
-            for (var i = 0; i < partyNum; i++)
-            {
-                Priorities.Add(i, 0);
-            }
-            Annotation = annotation;
-            ActionCount = 0;
+            Priorities.Add(i, 0);
         }
-
-        /// <summary>
-        /// 为特定Key增加优先级
-        /// </summary>
-        /// <param name="idx">key</param>
-        /// <param name="priority">优先级数值</param>
-        public void AddPriority(int idx, int priority)
-        {
-            Priorities[idx] += priority;
-        }
-
-        /// <summary>
-        /// 从Priorities中找到前num个数值最小的，得到新的Dict返回
-        /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public List<KeyValuePair<int, int>> SelectSmallPriorityIndices(int num)
-        {
-            return SelectMiddlePriorityIndices(0, num);
-        }
-
-        /// <summary>
-        /// 从Priorities中找到前num个数值最大的，得到新的Dict返回
-        /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public List<KeyValuePair<int, int>> SelectLargePriorityIndices(int num)
-        {
-            return SelectMiddlePriorityIndices(0, num, true);
-        }
-
-        /// <summary>
-        /// 从Priorities中找到升序排列中间的数值，得到新的Dict返回
-        /// </summary>
-        /// <param name="skip">跳过skip个元素。若从第二个开始取，skip=1</param>
-        /// <param name="num"></param>
-        /// <param name="descending">降序排列，默认为false</param>
-        /// <returns></returns>
-        public List<KeyValuePair<int, int>> SelectMiddlePriorityIndices(int skip, int num, bool descending = false)
-        {
-            if (Priorities.Count < skip + num)
-                return new List<KeyValuePair<int, int>>();
-
-            IEnumerable<KeyValuePair<int, int>> sortedPriorities;
-            if (descending)
-            {
-                // 根据值从大到小降序排序，并取前num个键
-                sortedPriorities = Priorities
-                    .OrderByDescending(pair => pair.Value) // 先根据值排列
-                    .ThenBy(pair => pair.Key) // 再根据键排列
-                    .Skip(skip) // 跳过前skip个元素
-                    .Take(num); // 取前num个键值对
-            }
-            else
-            {
-                // 根据值从小到大升序排序，并取前num个键
-                sortedPriorities = Priorities
-                    .OrderBy(pair => pair.Value) // 先根据值排列
-                    .ThenBy(pair => pair.Key) // 再根据键排列
-                    .Skip(skip) // 跳过前skip个元素
-                    .Take(num); // 取前num个键值对
-            }
-
-            return sortedPriorities.ToList();
-        }
-
-        /// <summary>
-        /// 从Priorities中找到升序排列第idx位的数据，得到新的Dict返回
-        /// </summary>
-        /// <param name="idx"></param>
-        /// <param name="descending">降序排列，默认为false</param>
-        /// <returns></returns>
-        public KeyValuePair<int, int> SelectSpecificPriorityIndex(int idx, bool descending = false)
-        {
-            var sortedPriorities = SelectMiddlePriorityIndices(0, 8, descending);
-            return sortedPriorities[idx];
-        }
-
-        /// <summary>
-        /// 从Priorities中找到对应key的数据，得到其Value排序后位置返回
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="descending">降序排列，默认为false</param>
-        /// <returns></returns>
-        public int FindPriorityIndexOfKey(int key, bool descending = false)
-        {
-            var sortedPriorities = SelectMiddlePriorityIndices(0, 8, descending);
-            var i = 0;
-            foreach (var dict in sortedPriorities)
-            {
-                if (dict.Key == key) return i;
-                i++;
-            }
-
-            return i;
-        }
-
-        /// <summary>
-        /// 一次性增加优先级数值
-        /// 通常适用于特殊优先级（如H-T-D-H）
-        /// </summary>
-        /// <param name="priorities"></param>
-        public void AddPriorities(List<int> priorities)
-        {
-            if (Priorities.Count != priorities.Count)
-                throw new ArgumentException("输入的列表与内部设置长度不同");
-
-            for (var i = 0; i < Priorities.Count; i++)
-                AddPriority(i, priorities[i]);
-        }
-
-        /// <summary>
-        /// 输出优先级字典的Key与优先级
-        /// </summary>
-        /// <returns></returns>
-        public string ShowPriorities()
-        {
-            var str = $"{Annotation} 优先级字典：\n";
-            foreach (var pair in Priorities)
-            {
-                str += $"Key {pair.Key} ({accessory.GetPlayerJobByIndex(pair.Key)}), Value {pair.Value}\n";
-            }
-            return str;
-        }
-
-        public string PrintAnnotation()
-        {
-            return Annotation;
-        }
-
-        public PriorityDict DeepCopy()
-        {
-            return JsonConvert.DeserializeObject<PriorityDict>(JsonConvert.SerializeObject(this)) ?? new PriorityDict();
-        }
-
-        public void AddActionCount(int count = 1)
-        {
-            ActionCount += count;
-        }
-
-        public bool IsActionCountEqualTo(int times)
-        {
-            return ActionCount == times;
-        }
+        Annotation = annotation;
+        ActionCount = 0;
     }
 
-    public class Counter
+    /// <summary>
+    /// 为特定Key增加优先级
+    /// </summary>
+    /// <param name="idx">key</param>
+    /// <param name="priority">优先级数值</param>
+    public void AddPriority(int idx, int priority)
     {
-        // ReSharper disable once NullableWarningSuppressionIsUsed
-        public ScriptAccessory accessory { get; set; } = null!;
-        public int Number { get; set; } = 0;
-        public bool Enable { get; set; } = true;
-        public string Annotation = "";
-
-        public void Init(ScriptAccessory _accessory, string annotation, bool enable = true)
-        {
-            accessory = _accessory;
-            Number = 0;
-            Enable = enable;
-            Annotation = annotation;
-        }
-
-        public string ShowCounter()
-        {
-            var str = $"{Annotation} 计数器【{(Enable ? "使能" : "不使能")}】：{Number}\n";
-            return str;
-        }
-
-        public void DisableCounter()
-        {
-            Enable = false;
-            var str = $"禁止 {Annotation} 计数器的数值改变。\n";
-        }
-
-        public void EnableCounter()
-        {
-            Enable = true;
-            var str = $"使能 {Annotation} 计数器的数值改变。\n";
-        }
-
-        public void AddCounter(int num = 1)
-        {
-            if (!Enable) return;
-            Number += num;
-        }
-
-        public void TimesCounter(int num = 1)
-        {
-            if (!Enable) return;
-            Number *= num;
-        }
+        Priorities[idx] += priority;
     }
 
-    #endregion 类函数
+    /// <summary>
+    /// 从Priorities中找到前num个数值最小的，得到新的Dict返回
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    public List<KeyValuePair<int, int>> SelectSmallPriorityIndices(int num)
+    {
+        return SelectMiddlePriorityIndices(0, num);
+    }
+
+    /// <summary>
+    /// 从Priorities中找到前num个数值最大的，得到新的Dict返回
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    public List<KeyValuePair<int, int>> SelectLargePriorityIndices(int num)
+    {
+        return SelectMiddlePriorityIndices(0, num, true);
+    }
+
+    /// <summary>
+    /// 从Priorities中找到升序排列中间的数值，得到新的Dict返回
+    /// </summary>
+    /// <param name="skip">跳过skip个元素。若从第二个开始取，skip=1</param>
+    /// <param name="num"></param>
+    /// <param name="descending">降序排列，默认为false</param>
+    /// <returns></returns>
+    public List<KeyValuePair<int, int>> SelectMiddlePriorityIndices(int skip, int num, bool descending = false)
+    {
+        if (Priorities.Count < skip + num)
+            return new List<KeyValuePair<int, int>>();
+
+        IEnumerable<KeyValuePair<int, int>> sortedPriorities;
+        if (descending)
+        {
+            // 根据值从大到小降序排序，并取前num个键
+            sortedPriorities = Priorities
+                .OrderByDescending(pair => pair.Value) // 先根据值排列
+                .ThenBy(pair => pair.Key) // 再根据键排列
+                .Skip(skip) // 跳过前skip个元素
+                .Take(num); // 取前num个键值对
+        }
+        else
+        {
+            // 根据值从小到大升序排序，并取前num个键
+            sortedPriorities = Priorities
+                .OrderBy(pair => pair.Value) // 先根据值排列
+                .ThenBy(pair => pair.Key) // 再根据键排列
+                .Skip(skip) // 跳过前skip个元素
+                .Take(num); // 取前num个键值对
+        }
+
+        return sortedPriorities.ToList();
+    }
+
+    /// <summary>
+    /// 从Priorities中找到升序排列第idx位的数据，得到新的Dict返回
+    /// </summary>
+    /// <param name="idx"></param>
+    /// <param name="descending">降序排列，默认为false</param>
+    /// <returns></returns>
+    public KeyValuePair<int, int> SelectSpecificPriorityIndex(int idx, bool descending = false)
+    {
+        var sortedPriorities = SelectMiddlePriorityIndices(0, 8, descending);
+        return sortedPriorities[idx];
+    }
+
+    /// <summary>
+    /// 从Priorities中找到对应key的数据，得到其Value排序后位置返回
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="descending">降序排列，默认为false</param>
+    /// <returns></returns>
+    public int FindPriorityIndexOfKey(int key, bool descending = false)
+    {
+        var sortedPriorities = SelectMiddlePriorityIndices(0, 8, descending);
+        var i = 0;
+        foreach (var dict in sortedPriorities)
+        {
+            if (dict.Key == key) return i;
+            i++;
+        }
+
+        return i;
+    }
+
+    /// <summary>
+    /// 一次性增加优先级数值
+    /// 通常适用于特殊优先级（如H-T-D-H）
+    /// </summary>
+    /// <param name="priorities"></param>
+    public void AddPriorities(List<int> priorities)
+    {
+        if (Priorities.Count != priorities.Count)
+            throw new ArgumentException("输入的列表与内部设置长度不同");
+
+        for (var i = 0; i < Priorities.Count; i++)
+            AddPriority(i, priorities[i]);
+    }
+
+    /// <summary>
+    /// 输出优先级字典的Key与优先级
+    /// </summary>
+    /// <returns></returns>
+    public string ShowPriorities()
+    {
+        var str = $"{Annotation} 优先级字典：\n";
+        foreach (var pair in Priorities)
+        {
+            str += $"Key {pair.Key} ({accessory.GetPlayerJobByIndex(pair.Key)}), Value {pair.Value}\n";
+        }
+        return str;
+    }
+
+    public string PrintAnnotation()
+    {
+        return Annotation;
+    }
+
+    public PriorityDict DeepCopy()
+    {
+        return JsonConvert.DeserializeObject<PriorityDict>(JsonConvert.SerializeObject(this)) ?? new PriorityDict();
+    }
+
+    public void AddActionCount(int count = 1)
+    {
+        ActionCount += count;
+    }
+
+    public bool IsActionCountEqualTo(int times)
+    {
+        return ActionCount == times;
+    }
+}
+
+public class Counter
+{
+    // ReSharper disable once NullableWarningSuppressionIsUsed
+    public ScriptAccessory accessory { get; set; } = null!;
+    public int Number { get; set; } = 0;
+    public bool Enable { get; set; } = true;
+    public string Annotation = "";
+
+    public void Init(ScriptAccessory _accessory, string annotation, bool enable = true)
+    {
+        accessory = _accessory;
+        Number = 0;
+        Enable = enable;
+        Annotation = annotation;
+    }
+
+    public string ShowCounter()
+    {
+        var str = $"{Annotation} 计数器【{(Enable ? "使能" : "不使能")}】：{Number}\n";
+        return str;
+    }
+
+    public void DisableCounter()
+    {
+        Enable = false;
+        var str = $"禁止 {Annotation} 计数器的数值改变。\n";
+    }
+
+    public void EnableCounter()
+    {
+        Enable = true;
+        var str = $"使能 {Annotation} 计数器的数值改变。\n";
+    }
+
+    public void AddCounter(int num = 1)
+    {
+        if (!Enable) return;
+        Number += num;
+    }
+
+    public void TimesCounter(int num = 1)
+    {
+        if (!Enable) return;
+        Number *= num;
+    }
+}
+
+#endregion 类函数
 
 
 #region 函数集
@@ -13676,6 +13670,21 @@ public static class SpecialFunction
             charaStruct->SetRotation(rotation);
         }
         sa.Log.Debug($"SetRotation => {obj.Name.TextValue} | {obj} => {rotation}");
+    }
+
+    public static void SetPostion(this ScriptAccessory sa, IGameObject? obj, Vector3 postion)
+    {
+        if (obj == null || !obj.IsValid())
+        {
+            sa.Log.Error($"传入的IGameObject不合法。");
+            return;
+        }
+        unsafe
+        {
+            GameObject* charaStruct = (GameObject*)obj.Address;
+            charaStruct->SetPosition(postion.X,postion.Y,postion.Z);
+        }
+        sa.Log.Debug($"SetRotation => {obj.Name.TextValue} | {obj} => {postion}");
     }
 }
 
