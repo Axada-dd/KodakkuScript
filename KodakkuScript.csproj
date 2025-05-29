@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <LangVersion>12</LangVersion>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,8 +14,20 @@
       <Reference Include="ECommons">
         <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\installedPlugins\KodakkuAssist\0.4.4.0\ECommons.dll</HintPath>
       </Reference>
+      <Reference Include="FFXIVClientStructs">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
+      </Reference>
+      <Reference Include="ImGui.NET">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\ImGui.NET.dll</HintPath>
+      </Reference>
       <Reference Include="KodakkuAssist">
         <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\installedPlugins\KodakkuAssist\0.4.4.0\KodakkuAssist.dll</HintPath>
+      </Reference>
+      <Reference Include="Lumina">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Lumina.dll</HintPath>
+      </Reference>
+      <Reference Include="Lumina.Excel">
+        <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
       </Reference>
       <Reference Include="Newtonsoft.Json">
         <HintPath>C:\Users\denglang\AppData\Roaming\XIVLauncherCN\addon\Hooks\dev\Newtonsoft.Json.dll</HintPath>
