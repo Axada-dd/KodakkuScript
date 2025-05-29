@@ -1768,11 +1768,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     }
 
-                    {
-
                         accessory.TTS(prompt);
 
-                    }
 
                 }
 
@@ -1937,11 +1934,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                {
-
                     accessory.TTS(prompt);
 
-                }
 
             }
 
@@ -3285,11 +3279,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                {
-
                     accessory.TTS(prompt);
 
-                }
 
             }
 
@@ -3550,11 +3541,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                {
-
                     accessory.TTS(prompt);
 
-                }
 
             }
 
@@ -4685,11 +4673,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                {
-
                     accessory.TTS(prompt);
 
-                }
 
             }
 
@@ -5698,17 +5683,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("场中集合分摊");
 
-                }
-
-
-
-            }
 
         }
 
@@ -5790,16 +5766,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("让Boss面向正北");
-
-                }
-
-
-            }
 
         }
 
@@ -6257,17 +6224,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("分摊");
 
-                }
-
-
-
-            }
 
         }
 
@@ -6528,16 +6486,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("分散");
 
-                }
-
-
-            }
 
         }
 
@@ -7061,17 +7011,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 }
 
-                {
-
-                    {
-
                         accessory.TTS("最远死刑");
 
-                    }
-
-
-
-                }
 
             }
 
@@ -7093,17 +7034,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     }
 
-                    {
-
-                        {
-
                             accessory.TTS("远离MT");
 
-                        }
-
-
-
-                    }
 
                 }
 
@@ -7122,15 +7054,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     }
 
-                    {
-
-                        {
-
                             accessory.TTS("远离ST");
 
-                        }
-
-                    }
 
                 }
 
@@ -7379,17 +7304,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
+                    accessory.TTS($"{((inTheNorth) ? ("Boss即将出现在正北") : ("Boss即将出现在正南"))}");
 
-                {
-
-                    accessory.TTS($"{((inTheNorth) ? ("Boss即将出现在正北") : ("Boss即将出现在正南"))}"
-                        );
-
-                }
-
-
-            }
 
         }
 
@@ -7518,17 +7434,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("集合并远离未来的碎片");
 
-                }
-
-
-
-            }
 
         }
 
@@ -7551,17 +7458,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("跑！");
 
-                }
-
-
-
-            }
 
         }
 
@@ -10691,17 +10589,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS($"{((goLeft) ? ("左侧分摊") : ("右侧分摊"))}");
 
-                }
-
-
-
-            }
 
         }
 
@@ -11098,17 +10987,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                        {
-
-                            {
-
                                 accessory.TTS("等待挑衅后退避");
 
-                            }
-
-
-
-                        }
 
                     }
 
@@ -11171,16 +11051,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                        {
-
-                            {
-
                                 accessory.TTS("立即挑衅！");
 
-                            }
-
-
-                        }
 
                     }
 
@@ -11266,16 +11138,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                        {
-
-                            {
-
                                 accessory.TTS("等待挑衅后退避");
 
-                            }
-
-
-                        }
 
                     }
 
@@ -11338,16 +11202,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         }
 
-                        {
-
-                            {
-
                                 accessory.TTS("立即挑衅！");
 
-                            }
-
-
-                        }
 
                     }
 
@@ -12665,16 +12521,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            {
-
-                {
-
                     accessory.TTS("挡枪然后换组");
 
-                }
-
-
-            }
 
         }
 
