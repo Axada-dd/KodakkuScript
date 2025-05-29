@@ -467,13 +467,10 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         {
             accessory.Method.RemoveDraw(".*");
 
-            if (
-               Phase4_Mark_Players_During_The_Second_Half)
-            {
-
-                accessory.Method.MarkClear();
-
-            }
+            if (Phase4_Mark_Players_During_The_Second_Half) accessory.Method.MarkClear();
+            
+            accessory.Method.SendChat($"获取角色职业：{accessory.GetCharJob(accessory.Data.Me)}");
+            
             #region User_SettingsInit_用户设置初始化
 
             //P1设置
@@ -525,7 +522,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             Phase5_Colour_Of_The_Boss_Central_Axis = new() { V4 = new(1f, 0f, 0f, 1f) };
             Phase5_Boss_Faces_Players_After_Fulgent_Blade = true;
             Phase5_Reminder_To_Provoke_During_Wings_Dark_And_Light = true;
-            #endregion
+            #endregion User_SettingsInit_用户设置初始化
             parse = 1;
             isInPhase5 = false;
             shenaniganSemaphore.Set();
@@ -633,7 +630,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             resetPoints();//初始化地火坐标
         }
 
-        #endregion
+        #endregion Initialization_初始化
 
 
         #region Phase_1
@@ -2790,7 +2787,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        #endregion
+        #endregion Phase_1
 
         #region Phase_2
 
@@ -5205,7 +5202,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             dp.DestoryAt = 3000;
             accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Fan, dp);
         }
-        #endregion
+        #endregion Phase_2
 
         #region Phase_3
 
@@ -7373,7 +7370,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             return -1;
         }
-        #endregion
+        #endregion Phase_3
 
         #region Phase_4
 
@@ -10155,7 +10152,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        #endregion
+        #endregion Phase_4
 
         #region Phase_5
 
@@ -12746,7 +12743,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             }
         }
 
-        #endregion
+        #endregion Phase_5
 
         #region Common_Mathematical_Wheels_常用数学轮子
         private async void TpToPosition(ScriptAccessory accessory, Vector3 pos, int delay)
@@ -12804,7 +12801,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             return new(centre.X + MathF.Sin(rot) * lenth, centre.Y, centre.Z - MathF.Cos(rot) * lenth);
         }
 
-        #endregion
+        #endregion Common_Mathematical_Wheels_常用数学轮子
 
     }
 
@@ -12881,7 +12878,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         }
     }
 
-    #endregion
+    #endregion Other_Common_Wheels_其他常用轮子
 
 }
 
