@@ -534,18 +534,10 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             phase3_rangeSemaphoreOfDarkWaterIii = 0;
             phase3_guidanceSemaphoreOfDarkWaterIii = 0;
             phase3_hasConfirmedInitialSafePositions = false;
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
+
             phase3_locomotive_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
+
             phase3_finalPositionOfTheBoss = new Vector3(100, 0, 100);
 
             P4FragmentId = 0;
@@ -4229,7 +4221,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             currentproperty.Name = "Phase2_Initial_Positions_Before_Light_Rampant_光之失控前初始站位";
             currentproperty.Scale = new(2);
             currentproperty.Owner = accessory.Data.Me;
-            currentproperty.TargetPosition = RotatePoint(new Vector3(100, 0, 95), new Vector3(100, 0, 100), (float)(float.Pi / 4 * rotation)); ;
+            currentproperty.TargetPosition = RotatePoint(new Vector3(100, 0, 95), new Vector3(100, 0, 100), (float)(float.Pi / 4 * rotation)); 
             currentproperty.ScaleMode |= ScaleMode.YByDistance;
             currentproperty.Color = accessory.Data.DefaultSafeColor;
             currentproperty.DestoryAt = 5000;
@@ -5792,18 +5784,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             phase3_rangeSemaphoreOfDarkWaterIii = 0;
             phase3_guidanceSemaphoreOfDarkWaterIii = 0;
             phase3_hasConfirmedInitialSafePositions = false;
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
-            new Vector3(100, 0, 100);
             phase3_finalPositionOfTheBoss = new Vector3(100, 0, 100);
         }
 
@@ -6714,13 +6696,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 {
 
                     phase3_locomotive_initialSafePositionOfTheLeftGroup = position1OfTheLast;
-                    new Vector3((position1OfTheLast.X - 100) / 3 + 100,
-                        position1OfTheLast.Y,
-                        (position1OfTheLast.Z - 100) / 3 + 100);
+
                     phase3_locomotive_initialSafePositionOfTheRightGroup = position2OfTheLast;
-                    new Vector3((position2OfTheLast.X - 100) / 3 + 100,
-                        position2OfTheLast.Y,
-                        (position2OfTheLast.Z - 100) / 3 + 100);
 
                     phase3_hasConfirmedInitialSafePositions = true;
 
@@ -6736,13 +6713,9 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 {
 
                     phase3_locomotive_initialSafePositionOfTheLeftGroup = position2OfTheLast;
-                    new Vector3((position2OfTheLast.X - 100) / 3 + 100,
-                        position2OfTheLast.Y,
-                        (position2OfTheLast.Z - 100) / 3 + 100);
+
                     phase3_locomotive_initialSafePositionOfTheRightGroup = position1OfTheLast;
-                    new Vector3((position1OfTheLast.X - 100) / 3 + 100,
-                        position1OfTheLast.Y,
-                        (position1OfTheLast.Z - 100) / 3 + 100);
+
 
                     phase3_hasConfirmedInitialSafePositions = true;
 
@@ -8726,7 +8699,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             System.Threading.Thread.MemoryBarrier();
 
             List<int> temporaryOrder = [0, 1, 2, 3, 4, 5, 6, 7];
-            string debugOutput = "";
 
 
 
@@ -8773,7 +8745,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                             accessory.Method.Mark(accessory.Data.PartyList[i], phase4_markForPlayersWithWyrmfang_asAConstant[markIndex]);
 
-                            debugOutput += $"i={i},markIndex={markIndex},phase4_markForPlayersWithWyrmfang_asAConstant[markIndex]={phase4_markForPlayersWithWyrmfang_asAConstant[markIndex]}\n";
 
                         }
 
@@ -10148,7 +10119,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
 
 
-                        return "";
                         // Just a placeholder and should never be reached.
 
                     }
@@ -10164,7 +10134,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
 
 
-                        return "";
                         // Just a placeholder and should never be reached.
 
                     }
@@ -10180,7 +10149,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
 
 
-                        return "";
                         // Just a placeholder and should never be reached.
 
                     }
@@ -10195,7 +10163,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         }
 
 
-                        return "";
                         // Just a placeholder and should never be reached.
 
                     }
