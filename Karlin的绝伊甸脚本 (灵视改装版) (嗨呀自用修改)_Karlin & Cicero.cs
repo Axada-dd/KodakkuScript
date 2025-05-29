@@ -72,7 +72,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public bool _____Phase3_Settings_____ { get; set; } = true;
         public ScriptColor Phase3_Colour_Of_Rough_Guidance { get; set; }
         public ScriptColor Phase3_Colour_Of_The_Penultimate_Apocalypse { get; set; }
-
+        [UserSetting("P3眩晕自动调整面向")] 
+        public bool Phase3_Auto_Face { get; set; } = true;
         [UserSetting("P3二运 引导暗夜舞蹈(最远死刑)的T")]
         public Tanks Phase3_Tank_Who_Baits_Darkest_Dance { get; set; } = Tanks.MT;
         public ScriptColor Phase3_Colour_Of_Darkest_Dance { get; set; }
@@ -7241,7 +7242,16 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             }
 
         }
-
+        [ScriptMethod(name: "眩晕时自动面向", eventType: EventTypeEnum.StatusAdd, eventCondition: ["StatusID:4163"],
+            userControl: true, suppress: 10000)]
+        public void UlrAutoFace(Event ev, ScriptAccessory sa)
+        {
+            if (_fruPhase != FruPhase.P3A_UltimateRelativity) return;
+            
+            var myDir = _ulr.GetDirection(sa.GetMyIndex());
+            sa.Log.Debug($"眩晕，触发自动面向。");
+            sa.SetRotation(sa.Data.MyObject, (myDir * 45f).DegToRad().Game2Logic());
+        }
         [ScriptMethod(name: "Phase3 Determine The Final Position Of The Boss 确定Boss的最终位置",
             eventType: EventTypeEnum.StartCasting,
             eventCondition: ["ActionId:40300"],
