@@ -2,24 +2,15 @@
 using System.Collections.Concurrent;
 using KodakkuAssist.Module.GameEvent;
 using KodakkuAssist.Script;
-using KodakkuAssist.Module.GameEvent.Struct;
 using KodakkuAssist.Module.Draw;
-// using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ECommons;
 using System.Numerics;
 using Newtonsoft.Json;
 using System.Linq;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-// using System.DirectoryServices;
-using System.Xml.Linq;
-using CicerosKodakkuAssist.FuturesRewrittenUltimate;
-using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Utility.Numerics;
 using ECommons.MathHelpers;
-using KodakkuAssist.Extensions;
 using KodakkuAssist.Module.GameOperate;
 using Newtonsoft.Json.Linq;
 
@@ -67,18 +58,9 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public bool Enable_Vanilla_TTS { get; set; } = false;
 
         public bool _____Phase1_Settings_____ { get; set; } = true;
-        public Phase1_Standby_Positions_Of_Utopian_Sky Phase1_Standby_Position_Of_Utopian_Sky { get; set; }
-        public bool Phase1_Mark_Players_In_Safe_Positions { get; set; }
         public ScriptColor Phase1_Colour_Of_Burnt_Strike_Characteristics { get; set; }
-        public Phase1_Groups_Of_Turn_Of_The_Heavens Phase1_Group_Of_Turn_Of_The_Heavens { get; set; }
-        public Phase1_Strats_Of_Fall_Of_Faith Phase1_Strat_Of_Fall_Of_Faith { get; set; }
-        public bool Phase1_Mark_Players_During_Fall_Of_Faith { get; set; }
-        public Phase1_Orientation_Benchmarks_During_Fall_Of_Faith Phase1_Orientation_Benchmark_During_Fall_Of_Faith { get; set; }
-        public Phase1_Strats_Of_Towers Phase1_Strat_Of_Towers { get; set; }
 
         public bool _____Phase2_Settings_____ { get; set; } = true;
-        public Phase2_Strats_After_Knockback Phase2_Strat_After_Knockback { get; set; }
-        public Phase2_Strats_Of_Mirror_Mirror Phase2_Strat_Of_Mirror_Mirror { get; set; }
         public ScriptColor Phase2_Colour_Of_Mirror_Rough_Guidance { get; set; }
         public ScriptColor Phase2_Colour_Of_Potential_Dangerous_Zones { get; set; }
         public Phase2_Initial_Protean_Positions_Of_Light_Rampant Phase2_Initial_Protean_Position_Of_Light_Rampant { get; set; }
@@ -88,11 +70,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public ScriptColor Phase2_Colour_Of_Sphere_AOEs { get; set; }
 
         public bool _____Phase3_Settings_____ { get; set; } = true;
-        public Phase3_Strats_Of_The_First_Half Phase3_Strat_Of_The_First_Half { get; set; }
-        public Phase3_Strats_Of_The_Second_Half Phase3_Strat_Of_The_Second_Half { get; set; }
-        public Phase3_Branches_Of_The_Double_Group_Strat Phase3_Branch_Of_The_Double_Group_Strat { get; set; }
-        public Phase3_Branches_Of_The_Locomotive_Strat Phase3_Branch_Of_The_Locomotive_Strat { get; set; }
-        public Phase3_Divisions_Of_The_Zone Phase3_Division_Of_The_Zone { get; set; }
         public ScriptColor Phase3_Colour_Of_Rough_Guidance { get; set; }
         public ScriptColor Phase3_Colour_Of_The_Penultimate_Apocalypse { get; set; }
 
@@ -102,20 +79,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         //[UserSetting("-----P4设置----- (No actual meaning for this setting/此设置无实际意义)")]
         public bool _____Phase4_Settings_____ { get; set; } = true;
-        public Phase4_Strats_Of_The_First_Half Phase4_Strat_Of_The_First_Half { get; set; }
         public ScriptColor Phase4_Colour_Of_Somber_Dance { get; set; }
         [UserSetting("P4二运 自动防击退")]
         public bool Phase4_FJT { get; set; } = true;
         [UserSetting("P4二运 标记玩家 (Make sure only one in the party enables this!/小队内只能有一人启用此选项!)")]
         public bool Phase4_Mark_Players_During_The_Second_Half { get; set; } = false;
-        public Phase4_Player_Types_To_Be_Marked Phase4_Player_Type_To_Be_Marked { get; set; }
-        public Phase4_Priorities_Of_The_Players_With_Wyrmclaw Phase4_Priority_Of_The_Players_With_Wyrmclaw { get; set; }
-        public Phase4_Logics_Of_Marking_Teammates_With_Wyrmclaw Phase4_Logic_Of_Marking_Teammates_With_Wyrmclaw { get; set; }
-        public Phase4_Logics_Of_Marking_Teammates_With_Wyrmfang Phase4_Logic_Of_Marking_Teammates_With_Wyrmfang { get; set; }
         public float Phase4_Drawing_Duration_Of_Normal_And_Delayed_Lights { get; set; }
         public ScriptColor Phase4_Colour_Of_Tidal_Light { get; set; }
-        public Phase4_Positions_Before_Knockback Phase4_Position_Before_Knockback { get; set; }
-        public Phase4_Logics_Of_Residue_Guidance Phase4_Logic_Of_Residue_Guidance { get; set; }
         public ScriptColor Phase4_Colour_Of_Residue_Guidance { get; set; }
         public Phase4_Relative_Positions_Of_Residues Phase4_Residue_Belongs_To_Attack1 { get; set; }
         public Phase4_Relative_Positions_Of_Residues Phase4_Residue_Belongs_To_Attack2 { get; set; }
@@ -142,10 +112,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         [UserSetting("P5光与暗之翼(踩塔) 倒三角法的分支")]
         public Phase5_Branches_Of_The_Reverse_Triangle_Strat Phase5_Branch_Of_The_Reverse_Triangle_Strat { get; set; }
         public bool Phase5_Reminder_To_Provoke_During_Wings_Dark_And_Light { get; set; }
-        public Phase5_Orders_During_Polarizing_Strikes Phase5_Order_During_Polarizing_Strikes { get; set; }
 
-        [UserSetting("-----开发者设置----- (No actual meaning for this setting/此设置无实际意义)")]
-        public bool _____Developer_Settings_____ { get; set; } = true;
         #endregion
 
         #region Variables_变量
@@ -157,36 +124,12 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         int P1雾龙计数 = 0;
         readonly Object P1雾龙计数读写锁_AsAConstant = new Object();
-        int P1雾龙计数2 = 0;
-        readonly Object P1雾龙计数2读写锁_AsAConstant = new Object();
         int[] P1雾龙记录 = [0, 0, 0, 0];
-        List<MarkType> phase1_markForThePlayersInSafePositions_asAConstant = [
-            MarkType.Attack1,
-            MarkType.Attack2,
-            MarkType.Attack3,
-            MarkType.Attack4,
-            MarkType.Attack5,
-            MarkType.Attack6,
-            MarkType.Attack7,
-            MarkType.Attack8
-        ];
         bool P1雾龙雷 = false;
         List<int> P1转轮召抓人 = [0, 0, 0, 0, 0, 0, 0, 0];
         volatile int phase1_timesBurnishedGloryWasCast = 0;
         volatile List<int> phase1_tetheredPlayersDuringFallOfFaith = [];
         volatile bool phase1_isInFallOfFaith = false;
-        List<MarkType> phase1_markForTheTetheredPlayer_asAConstant = [
-            MarkType.Stop1,
-            MarkType.Bind1,
-            MarkType.Stop2,
-            MarkType.Bind2
-        ];
-        List<MarkType> phase1_markForTheUntetheredPlayer_asAConstant = [
-            MarkType.Attack1,
-            MarkType.Attack2,
-            MarkType.Attack3,
-            MarkType.Attack4
-        ];
         volatile int phase1_semaphoreOfMarkingTetheredPlayers = 0;
         volatile int phase1_semaphoreOfShortPrompts = 0;
         volatile int phase1_semaphoreOfDrawing = 0;
@@ -210,13 +153,11 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         volatile bool phase2_writePermissionForLightsteeped = true;
         System.Threading.AutoResetEvent phase2_semaphoreFinalLightsteepedWasConfirmed = new System.Threading.AutoResetEvent(false);
 
-        volatile string phase3_bossId = "";
         List<int> P3FireBuff = [0, 0, 0, 0, 0, 0, 0, 0];
         List<int> P3WaterBuff = [0, 0, 0, 0, 0, 0, 0, 0];
         List<int> P3ReturnBuff = [0, 0, 0, 0, 0, 0, 0, 0];
         List<int> P3Lamp = [0, 0, 0, 0, 0, 0, 0, 0];
         List<int> P3LampWise = [0, 0, 0, 0, 0, 0, 0, 0];
-        List<int> P3Stack = [0, 0, 0, 0, 0, 0, 0, 0];
         bool P3FloorFireDone = false;
         int P3FloorFire = 0;
         volatile List<Phase3_Types_Of_Dark_Water_III> phase3_typeOfDarkWaterIii = [
@@ -250,18 +191,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         List<int> phase3_locomotive_priority_asAConstant = [0, 1, 2, 3, 7, 6, 5, 4];
         // The priority would be MT OT H1 H2 R2 R1 M2 M1 or MT ST H1 H2 D4 D3 D2 D1 temporarily if the Locomotive strat is adopted.
         volatile bool phase3_hasConfirmedInitialSafePositions = false;
-        Vector3 phase3_doubleGroup_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
-        Vector3 phase3_doubleGroup_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-        Vector3 phase3_doubleGroup_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-        Vector3 phase3_doubleGroup_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
         Vector3 phase3_locomotive_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
         Vector3 phase3_locomotive_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-        Vector3 phase3_locomotive_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-        Vector3 phase3_locomotive_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-        Vector3 phase3_moglinMeow_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
-        Vector3 phase3_moglinMeow_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-        Vector3 phase3_moglinMeow_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-        Vector3 phase3_moglinMeow_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
         Vector3 phase3_finalPositionOfTheBoss = new Vector3(100, 0, 100);
 
         ulong P4FragmentId;
@@ -313,13 +244,10 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         volatile bool phase5_hasConfirmedTheInitialPosition = false;
         Vector3 phase5_leftSideOfTheSouth_asAConstant = new Vector3(98, 0, 107);
         Vector3 phase5_rightSideOfTheSouth_asAConstant = new Vector3(102, 0, 107);
-        Vector3 phase5_leftSideOfTheNortheast_asAConstant = new Vector3(107.06f, 0, 98.23f);
         Vector3 phase5_rightSideOfTheNortheast_asAConstant = new Vector3(105.06f, 0, 94.77f);
         Vector3 phase5_leftSideOfTheNorthwest_asAConstant = new Vector3(94.94f, 0, 94.77f);
-        Vector3 phase5_rightSideOfTheNorthwest_asAConstant = new Vector3(92.94f, 0, 98.23f);
         Vector3 phase5_standbyPointBetweenSouthAndNortheast_asAConstant = new Vector3(106.06f, 0, 103.50f);
         Vector3 phase5_standbyPointBetweenSouthAndNorthwest_asAConstant = new Vector3(93.94f, 0, 103.50f);
-        Vector3 phase5_standbyPointBetweenNortheastAndNorthwest_asAConstant = new Vector3(100, 0, 93);
         Vector3 phase5_positionToTakeHitsOnTheLeft_asAConstant = new Vector3(95.93f, 0, 104.07f);
         Vector3 phase5_positionToBeCoveredOnTheLeft_asAConstant = new Vector3(93.81f, 0, 106.19f);
         Vector3 phase5_positionToStandbyOnTheLeft_asAConstant = new Vector3(99.24f, 0, 108.72f);
@@ -362,71 +290,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             OT_ST
 
         }
+        
 
-        public enum Phase1_Standby_Positions_Of_Utopian_Sky
-        {
-
-            Swap_OT_And_M2_交换ST与D4_莫灵喵与MMW,
-            Both_Tanks_Go_Center_双T去中间
-
-        }
-
-        public enum Phase1_Groups_Of_Turn_Of_The_Heavens
-        {
-
-            MTOTH1H2_Go_North_MTM1_vary_MTSTH1H2去北MTD1换_莫灵喵与MMW,
-            MTH1M1R1_Go_North_MTOT_vary_MTH1D1D3去北MTST换,
-            MTOTR1R2_Go_North_MTM1_vary_MTSTD3D4去北MTD1换_莫灵喵
-
-        }
-
-        public enum Phase1_Strats_Of_Fall_Of_Faith
-        {
-
-            Single_Line_In_THD_Order_按THD顺序单排,
-            Single_Line_In_HTD_Order_按HTD顺序单排_莫灵喵,
-            Single_Line_In_H1TDH2_Order_按H1TDH2顺序单排,
-            Double_Lines_H12MOT_Left_M12R12_Right_双排左H12MST右D1234_莫灵喵与MMW,
-            Double_Lines_MOTH12_Left_M12R12_Right_双排左MSTH12右D1234
-
-        }
-
-        public enum Phase1_Orientation_Benchmarks_During_Fall_Of_Faith
-        {
-
-            High_Priority_Left_Facing_Due_North_面向正北左侧高优先级,
-            High_Priority_Left_Facing_The_Boss_面向Boss左侧高优先级_莫灵喵与MMW
-
-        }
-
-        public enum Phase1_Strats_Of_Towers
-        {
-
-            Completely_Based_On_Priority_完全根据优先级_莫灵喵,
-            Fixed_H1H2R2_Priority_For_Rest_固定H1H2D4剩余人优先级,
-            Fixed_H1H2R2_Rest_Fill_Vacancies_固定H1H2D4剩余人补位_MMW
-
-        }
-
-        public enum Phase2_Strats_After_Knockback
-        {
-
-            Clockwise_One_Group_Counterclockwise_总是顺时针单组逆时针,
-            Counterclockwise_One_Group_Clockwise_总是逆时针单组顺时针,
-            Clockwise_Both_Groups_Counterclockwise_总是顺时针双组逆时针_莫灵喵与MMW,
-            Counterclockwise_Both_Groups_Clockwise_总是逆时针双组顺时针
-
-        }
-
-        public enum Phase2_Strats_Of_Mirror_Mirror
-        {
-
-            Melee_Group_Left_Red_近战组去左红色镜子,
-            Melee_Group_Right_Red_近战组去右红色镜子,
-            Melee_Group_Closest_Red_Left_If_Same_近战组最近红色镜子距离相同则左,
-            Melee_Group_Closest_Red_Right_If_Same_近战组最近红色镜子距离相同则右_莫灵喵与MMW
-
-        }
 
         public enum Phase2_Initial_Protean_Positions_Of_Light_Rampant
         {
@@ -446,46 +311,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        public enum Phase3_Strats_Of_The_First_Half
-        {
-
-            Moogle_莫古力_莫灵喵与MMW,
-            Other_Strats_Are_Work_In_Progress_其他攻略正在施工中
-
-        }
-
-        public enum Phase3_Strats_Of_The_Second_Half
-        {
-
-            Double_Group_双分组法,
-            High_Priority_As_Locomotives_车头低换法_MMW,
-            Moglin_Meow_Or_Baby_Wheelchair_Based_On_Signs_根据目标标记的莫灵喵法或宝宝椅法
-
-        }
-
-        public enum Phase3_Branches_Of_The_Double_Group_Strat
-        {
-
-            Based_On_Safe_Positions_安全区为基准_MMW,
-            Based_On_The_Second_Apocalypse_第二次启示为基准
-
-        }
-
-        public enum Phase3_Branches_Of_The_Locomotive_Strat
-        {
-
-            MT_And_M1_As_Locomotives_MT和D1为车头_MMW,
-            Others_As_Locomotives_Chinese_PF_国服野队人群为车头
-
-        }
-
-        public enum Phase3_Divisions_Of_The_Zone
-        {
-
-            North_To_Southwest_For_The_Left_Group_左组从正北到西南_莫灵喵与MMW,
-            Northwest_To_South_For_The_Left_Group_左组从西北到正南
-
-        }
 
         public enum Phase3_Types_Of_Dark_Water_III
         {
@@ -497,59 +322,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        public enum Phase4_Strats_Of_The_First_Half
-        {
-
-            Single_Swap_Baiting_After_先单换再引导_莫灵喵与MMW,
-            Single_Swap_Baiting_First_先引导再单换,
-            Double_Swaps_Baiting_First_先引导再双换
-
-        }
-
-        public enum Phase4_Player_Types_To_Be_Marked
-        {
-
-            Both_The_Debuffs_Wyrmclaw_And_Wyrmfang_圣龙爪圣龙牙两种都标记,
-            Only_Wyrmclaw_The_Red_Debuff_仅圣龙爪红色Debuff,
-            Only_Wyrmfang_The_Blue_Debuff_仅圣龙牙蓝色Debuff
-
-        }
-
-        public enum Phase4_Priorities_Of_The_Players_With_Wyrmclaw
-        {
-
-            In_THD_Order_按THD顺序_莫灵喵,
-            In_HTD_Order_按HTD顺序_MMW,
-            In_H1TDH2_Order_按H1TDH2顺序
-
-        }
-
-        public enum Phase4_Logics_Of_Marking_Teammates_With_Wyrmclaw
-        {
-
-            Ignore1_And_Bind1_Go_West_禁止1和锁链1去西边_莫灵喵,
-            Ignore1_And_Ignore2_Go_West_禁止1和禁止2去西边
-
-        }
-
-        public enum Phase4_Logics_Of_Residue_Guidance
-        {
-
-            According_To_Signs_On_Me_根据我身上的目标标记_莫灵喵和MMW,
-            According_To_Debuffs_根据Debuff
-
-        }
-
-        public enum Phase4_Logics_Of_Marking_Teammates_With_Wyrmfang
-        {
-
-            According_To_Debuffs_1234_From_East_To_West_根据Debuff从东到西1234,
-            According_To_Debuffs_1342_From_East_To_West_根据Debuff从东到西1342,
-            According_To_The_Priority_THD_根据THD优先级,
-            According_To_The_Priority_HTD_根据HTD优先级,
-            According_To_The_Priority_H1TDH2_根据H1TDH2优先级
-
-        }
 
         public enum Phase4_Relative_Positions_Of_Residues
         {
@@ -562,13 +334,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        public enum Phase4_Positions_Before_Knockback
-        {
-
-            Normal_正攻_莫灵喵与MMW,
-            Y_Formation_Japanese_PF_日服野队Y字队形
-
-        }
 
         public enum Phase5_Strats_Of_Wings_Dark_And_Light
         {
@@ -595,13 +360,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        public enum Phase5_Orders_During_Polarizing_Strikes
-        {
 
-            Tanks_Melees_Ranges_Healers_坦克近战远程奶妈_莫灵喵与MMW,
-            Tanks_Healers_Melees_Ranges_坦克奶妈近战远程
-
-        }
 
         public class Blade
         {
@@ -657,10 +416,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         {
             accessory.Method.RemoveDraw(".*");
 
-            if (Phase1_Mark_Players_In_Safe_Positions
-               ||
-               Phase1_Mark_Players_During_Fall_Of_Faith
-               ||
+            if (
                Phase4_Mark_Players_During_The_Second_Half)
             {
 
@@ -669,17 +425,9 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             }
             #region User_SettingsInit_用户设置初始化
             //P1设置
-            Phase1_Standby_Position_Of_Utopian_Sky = Phase1_Standby_Positions_Of_Utopian_Sky.Swap_OT_And_M2_交换ST与D4_莫灵喵与MMW;
-            Phase1_Mark_Players_In_Safe_Positions = false;
             Phase1_Colour_Of_Burnt_Strike_Characteristics = new() { V4 = new(1f, 1f, 0f, 1f) };
-            Phase1_Strat_Of_Fall_Of_Faith = Phase1_Strats_Of_Fall_Of_Faith.Double_Lines_H12MOT_Left_M12R12_Right_双排左H12MST右D1234_莫灵喵与MMW;
-            Phase1_Mark_Players_During_Fall_Of_Faith = false;
-            Phase1_Orientation_Benchmark_During_Fall_Of_Faith = Phase1_Orientation_Benchmarks_During_Fall_Of_Faith.High_Priority_Left_Facing_The_Boss_面向Boss左侧高优先级_莫灵喵与MMW;
-            Phase1_Strat_Of_Towers = Phase1_Strats_Of_Towers.Fixed_H1H2R2_Rest_Fill_Vacancies_固定H1H2D4剩余人补位_MMW;
 
             //P2设置
-            Phase2_Strat_After_Knockback = Phase2_Strats_After_Knockback.Clockwise_Both_Groups_Counterclockwise_总是顺时针双组逆时针_莫灵喵与MMW;
-            Phase2_Strat_Of_Mirror_Mirror = Phase2_Strats_Of_Mirror_Mirror.Melee_Group_Closest_Red_Right_If_Same_近战组最近红色镜子距离相同则右_莫灵喵与MMW;
             Phase2_Colour_Of_Mirror_Rough_Guidance = new() { V4 = new(1f, 1f, 0f, 1f) };
             Phase2_Colour_Of_Potential_Dangerous_Zones = new() { V4 = new(1f, 0f, 0f, 1f) };
             if (Phase2_Strat_Of_Light_Rampant ==
@@ -697,27 +445,15 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             Phase2_Colour_Of_Sphere_AOEs = new() { V4 = new(1f, 0f, 0f, 1f) };
 
             //P3设置
-            Phase3_Strat_Of_The_First_Half = Phase3_Strats_Of_The_First_Half.Moogle_莫古力_莫灵喵与MMW;
-            Phase3_Strat_Of_The_Second_Half = Phase3_Strats_Of_The_Second_Half.High_Priority_As_Locomotives_车头低换法_MMW;
-            Phase3_Branch_Of_The_Double_Group_Strat = Phase3_Branches_Of_The_Double_Group_Strat.Based_On_Safe_Positions_安全区为基准_MMW;
-            Phase3_Branch_Of_The_Locomotive_Strat = Phase3_Branches_Of_The_Locomotive_Strat.Others_As_Locomotives_Chinese_PF_国服野队人群为车头;
-            Phase3_Division_Of_The_Zone = Phase3_Divisions_Of_The_Zone.North_To_Southwest_For_The_Left_Group_左组从正北到西南_莫灵喵与MMW;
             Phase3_Colour_Of_Rough_Guidance = new() { V4 = new(1f, 1f, 0f, 1f) };
             Phase3_Colour_Of_The_Penultimate_Apocalypse = new() { V4 = new(0, 1f, 1f, 1f) };
             //Phase3_Tank_Who_Baits_Darkest_Dance = Tanks.MT;
             Phase3_Colour_Of_Darkest_Dance = new() { V4 = new(1f, 0f, 0f, 1f) };
 
             //P4设置
-            Phase4_Strat_Of_The_First_Half = Phase4_Strats_Of_The_First_Half.Single_Swap_Baiting_After_先单换再引导_莫灵喵与MMW;
             Phase4_Colour_Of_Somber_Dance = new() { V4 = new(1f, 0f, 0f, 1f) };
-            Phase4_Player_Type_To_Be_Marked = Phase4_Player_Types_To_Be_Marked.Only_Wyrmfang_The_Blue_Debuff_仅圣龙牙蓝色Debuff;
-            Phase4_Priority_Of_The_Players_With_Wyrmclaw = Phase4_Priorities_Of_The_Players_With_Wyrmclaw.In_HTD_Order_按HTD顺序_MMW;
-            Phase4_Logic_Of_Marking_Teammates_With_Wyrmclaw = Phase4_Logics_Of_Marking_Teammates_With_Wyrmclaw.Ignore1_And_Bind1_Go_West_禁止1和锁链1去西边_莫灵喵;
-            Phase4_Logic_Of_Marking_Teammates_With_Wyrmfang = Phase4_Logics_Of_Marking_Teammates_With_Wyrmfang.According_To_Debuffs_1234_From_East_To_West_根据Debuff从东到西1234;
             Phase4_Drawing_Duration_Of_Normal_And_Delayed_Lights = 3f;
             Phase4_Colour_Of_Tidal_Light = new() { V4 = new(1f, 1f, 0f, 1f) };
-            Phase4_Position_Before_Knockback = Phase4_Positions_Before_Knockback.Y_Formation_Japanese_PF_日服野队Y字队形;
-            Phase4_Logic_Of_Residue_Guidance = Phase4_Logics_Of_Residue_Guidance.According_To_Signs_On_Me_根据我身上的目标标记_莫灵喵和MMW;
             Phase4_Colour_Of_Residue_Guidance = new() { V4 = new(1f, 1f, 0f, 1f) };
             Phase4_Residue_Belongs_To_Attack1 = Phase4_Relative_Positions_Of_Residues.Eastmost_最东侧;
             Phase4_Residue_Belongs_To_Attack2 = Phase4_Relative_Positions_Of_Residues.About_East_次东侧;
@@ -737,7 +473,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             Phase5_Colour_Of_The_Boss_Central_Axis = new() { V4 = new(1f, 0f, 0f, 1f) };
             Phase5_Boss_Faces_Players_After_Fulgent_Blade = true;
             Phase5_Reminder_To_Provoke_During_Wings_Dark_And_Light = true;
-            Phase5_Order_During_Polarizing_Strikes = Phase5_Orders_During_Polarizing_Strikes.Tanks_Melees_Ranges_Healers_坦克近战远程奶妈_莫灵喵与MMW;
             #endregion
             parse = 1;
             isInPhase5 = false;
@@ -745,7 +480,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             P1雾龙记录 = [0, 0, 0, 0];
             P1雾龙计数 = 0;
-            P1雾龙计数2 = 0;
             P1转轮召抓人 = [0, 0, 0, 0, 0, 0, 0, 0];
             phase1_timesBurnishedGloryWasCast = 0;
             phase1_tetheredPlayersDuringFallOfFaith = [];
@@ -772,9 +506,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             phase2_writePermissionForLightsteeped = true;
             phase2_semaphoreFinalLightsteepedWasConfirmed = new System.Threading.AutoResetEvent(false);
 
-            phase3_bossId = "";
             P3FloorFireDone = false;
-            P3Stack = [0, 0, 0, 0, 0, 0, 0, 0];
             phase3_typeOfDarkWaterIii = [
                 Phase3_Types_Of_Dark_Water_III.NONE,
                 Phase3_Types_Of_Dark_Water_III.NONE,
@@ -802,18 +534,18 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             phase3_rangeSemaphoreOfDarkWaterIii = 0;
             phase3_guidanceSemaphoreOfDarkWaterIii = 0;
             phase3_hasConfirmedInitialSafePositions = false;
-            phase3_doubleGroup_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
-            phase3_doubleGroup_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            phase3_doubleGroup_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_doubleGroup_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            phase3_locomotive_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_locomotive_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_moglinMeow_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
-            phase3_moglinMeow_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            phase3_moglinMeow_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_moglinMeow_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
             phase3_finalPositionOfTheBoss = new Vector3(100, 0, 100);
 
             P4FragmentId = 0;
@@ -1811,12 +1543,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         phase1_tetheredPlayersDuringFallOfFaith.Clear();
 
-                        if (Phase1_Mark_Players_During_Fall_Of_Faith)
-                        {
 
-                            accessory.Method.MarkClear();
-
-                        }
 
                         phase1_semaphoreOfMarkingTetheredPlayers = 0;
                         phase1_semaphoreOfShortPrompts = 0;
@@ -1841,12 +1568,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         phase1_tetheredPlayersDuringFallOfFaith.Clear();
 
-                        if (Phase1_Mark_Players_During_Fall_Of_Faith)
-                        {
-
-                            accessory.Method.MarkClear();
-
-                        }
 
                         phase1_semaphoreOfMarkingTetheredPlayers = 0;
                         phase1_semaphoreOfShortPrompts = 0;
@@ -1863,12 +1584,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                         phase1_tetheredPlayersDuringFallOfFaith.Clear();
 
-                        if (Phase1_Mark_Players_During_Fall_Of_Faith)
-                        {
-
-                            accessory.Method.MarkClear();
-
-                        }
 
                         phase1_semaphoreOfMarkingTetheredPlayers = 0;
                         phase1_semaphoreOfShortPrompts = 0;
@@ -1932,52 +1647,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        [ScriptMethod(name: "Phase1 Mark Tethered Players 标记被连线的玩家",
-            eventType: EventTypeEnum.Tether,
-            eventCondition: ["Id:regex:^(00F9|011F)$"],
-            userControl: false)]
-
-        public void Phase1_Mark_Tethered_Players_标记被连线的玩家(Event @event, ScriptAccessory accessory)
-        {
-
-            if (!Phase1_Mark_Players_During_Fall_Of_Faith)
-            {
-
-                return;
-
-            }
-
-            if (parse != 1)
-            {
-
-                return;
-
-            }
-
-            if (!phase1_isInFallOfFaith)
-            {
-
-                return;
-
-            }
-
-            while (System.Threading.Interlocked.CompareExchange(ref phase1_semaphoreOfMarkingTetheredPlayers, 0, 1) == 0)
-            {
-
-                System.Threading.Thread.Sleep(1);
-
-            }
-
-            System.Threading.Thread.MemoryBarrier();
-
-            int copyOfTheCount = phase1_tetheredPlayersDuringFallOfFaith.Count;
-            int targetIndex = (phase1_tetheredPlayersDuringFallOfFaith.Last() % 10);
-            MarkType targetMark = phase1_markForTheTetheredPlayer_asAConstant[copyOfTheCount - 1];
-
-            accessory.Method.Mark(accessory.Data.PartyList[targetIndex], targetMark);
-
-
-        }
 
         [ScriptMethod(name: "Phase1 Prompt The Type Of The Current Tether 提示当前连线的类型",
             eventType: EventTypeEnum.Tether,
@@ -2140,94 +1809,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         }
 
-        [ScriptMethod(name: "Phase1 Mark Untethered Players 标记未被连线的玩家",
-            eventType: EventTypeEnum.Tether,
-            eventCondition: ["Id:regex:^(00F9|011F)$"],
-            userControl: false)]
-
-        public void Phase1_Mark_Untethered_Players_标记未被连线的玩家(Event @event, ScriptAccessory accessory)
-        {
-
-            if (!Phase1_Mark_Players_During_Fall_Of_Faith)
-            {
-
-                return;
-
-            }
-
-            if (parse != 1)
-            {
-
-                return;
-
-            }
-
-            if (!phase1_isInFallOfFaith)
-            {
-
-                return;
-
-            }
-
-            while (System.Threading.Interlocked.CompareExchange(ref phase1_semaphoreOfMarkingUntetheredPlayers, 0, 1) == 0)
-            {
-
-                System.Threading.Thread.Sleep(1);
-
-            }
-
-            System.Threading.Thread.MemoryBarrier();
-
-            if (phase1_tetheredPlayersDuringFallOfFaith.Count != 4)
-            {
-
-                return;
-
-            }
-
-            var tetheredPlayers = phase1_tetheredPlayersDuringFallOfFaith.Select(o => o % 10).ToList();
-            List<int> untetheredPlayers = [];
-
-
-            {
-                // The addition of this strat credits to @alexandria_prime. Appreciate!
-
-                List<int> temporaryPriority = new List<int> { 2, 3, 0, 1, 4, 5, 6, 7 };
-
-                for (int i = 0; i < temporaryPriority.Count; ++i)
-                {
-
-                    if (!tetheredPlayers.Contains(temporaryPriority[i]))
-                    {
-
-                        untetheredPlayers.Add(temporaryPriority[i]);
-
-                    }
-
-                }
-
-            }
-
-
-            if (untetheredPlayers.Count != 4)
-            {
-
-                return;
-
-            }
-
-            string debugOutput = "";
-
-            for (int i = 0; i < untetheredPlayers.Count; ++i)
-            {
-
-                accessory.Method.Mark(accessory.Data.PartyList[(untetheredPlayers[i])], phase1_markForTheUntetheredPlayer_asAConstant[i]);
-
-
-            }
-
-
-        }
 
         [ScriptMethod(name: "Phase1 Prompt All The Types Of Tethers 提示所有连线的类型",
             eventType: EventTypeEnum.Tether,
@@ -2519,7 +2100,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                     Vector3 dealpos2 = default;
 
 
-                    if (Phase1_Orientation_Benchmark_During_Fall_Of_Faith == Phase1_Orientation_Benchmarks_During_Fall_Of_Faith.High_Priority_Left_Facing_The_Boss_面向Boss左侧高优先级_莫灵喵与MMW)
                     {
                         // The addition of this benchmark credits to @alexandria_prime. Appreciate!
 
@@ -2767,7 +2347,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
 
 
-                        if (Phase1_Strat_Of_Towers == Phase1_Strats_Of_Towers.Fixed_H1H2R2_Rest_Fill_Vacancies_固定H1H2D4剩余人补位_MMW)
                         {
                             // The algorithm implementation of this strat was inspired by @abigseal's script.
                             // Therefore, the following code should credit to him. Appreciate!
@@ -5617,7 +5196,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         public void P3_时间压缩_分P(Event @event, ScriptAccessory accessory)
         {
             parse = 31;
-            phase3_bossId = @event["SourceId"];
             P3FireBuff = [0, 0, 0, 0, 0, 0, 0, 0];
             P3WaterBuff = [0, 0, 0, 0, 0, 0, 0, 0];
             P3ReturnBuff = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -6214,18 +5792,18 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             phase3_rangeSemaphoreOfDarkWaterIii = 0;
             phase3_guidanceSemaphoreOfDarkWaterIii = 0;
             phase3_hasConfirmedInitialSafePositions = false;
-            phase3_doubleGroup_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
-            phase3_doubleGroup_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            phase3_doubleGroup_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_doubleGroup_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
             phase3_locomotive_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            phase3_locomotive_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_locomotive_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_moglinMeow_initialSafePositionOfTheLeftGroup = new Vector3(100, 0, 100);
-            phase3_moglinMeow_initialSafePositionOfTheRightGroup = new Vector3(100, 0, 100);
-            phase3_moglinMeow_leftPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
-            phase3_moglinMeow_rightPositionToStackOfTheSecondRound = new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
+            new Vector3(100, 0, 100);
             phase3_finalPositionOfTheBoss = new Vector3(100, 0, 100);
         }
 
@@ -6604,54 +6182,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             var currentProperty = accessory.Data.GetDefaultDrawProperties();
 
 
-            if (Phase3_Strat_Of_The_Second_Half == Phase3_Strats_Of_The_Second_Half.High_Priority_As_Locomotives_车头低换法_MMW)
-            {
-
-                if (phase3_numberOfDarkWaterIiiHasBeenProcessed == 6)
-                {
-
-                    bool goLeft = phase3_locomotive_shouldGoLeft(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
-
-                    for (int i = 0; i < 8; ++i)
-                    {
-
-                        if (phase3_typeOfDarkWaterIii[i] == currentType)
-                        {
-
-                            currentProperty = accessory.Data.GetDefaultDrawProperties();
-
-                            currentProperty.Name = "Phase3_Range_Of_Dark_Water_III_黑暗狂水范围";
-                            currentProperty.Scale = new(6);
-                            currentProperty.Owner = accessory.Data.PartyList[i];
-                            currentProperty.DestoryAt = 5000;
-
-                            if (phase3_locomotive_shouldGoLeft(i) == goLeft)
-                            {
-
-                                currentProperty.Color = accessory.Data.DefaultSafeColor;
-
-                            }
-
-                            else
-                            {
-
-                                currentProperty.Color = accessory.Data.DefaultDangerColor;
-
-                            }
-
-                            accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, currentProperty);
-
-                        }
-
-                    }
-
-                    return;
-
-                }
-
-            }
-
-
             for (int i = 0; i < 8; ++i)
             {
 
@@ -6996,125 +6526,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             currentProperty.Delay = 1250;
             currentProperty.DestoryAt = 2500;
 
-            if (Phase3_Strat_Of_The_Second_Half == Phase3_Strats_Of_The_Second_Half.Double_Group_双分组法)
-            {
 
-                int myDoubleGroupIndex = phase3_doubleGroup_getDoubleGroupIndex(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
-
-                switch (myDoubleGroupIndex)
-                {
-
-                    case 0:
-                        {
-                            // H1
-
-                            currentProperty.TargetPosition = new Vector3(85, 0, 100);
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 1:
-                        {
-                            // H2
-
-                            bool goLeft = phase3_doubleGroup_shouldGoLeft(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
-
-
-                            currentProperty.TargetPosition = (goLeft) ? (new Vector3(93, 0, 92)) : (new Vector3(107, 0, 92));
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 2:
-                        {
-                            // MT
-
-                            currentProperty.TargetPosition = new Vector3(100, 0, 92);
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 3:
-                        {
-                            // OT or ST
-
-                            currentProperty.TargetPosition = new Vector3(100, 0, 100);
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 4:
-                        {
-                            // M1 or D1
-
-                            bool goLeft = phase3_doubleGroup_shouldGoLeft(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
-
-
-
-                            currentProperty.TargetPosition = (goLeft) ? (new Vector3(93, 0, 100)) : (new Vector3(107, 0, 100));
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 5:
-                        {
-                            // M2 or D2
-
-                            currentProperty.TargetPosition = new Vector3(100, 0, 108);
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 6:
-                        {
-                            // R1 or D3
-
-                            bool goLeft = phase3_doubleGroup_shouldGoLeft(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
-
-
-                            currentProperty.TargetPosition = (goLeft) ? (new Vector3(93, 0, 108)) : (new Vector3(107, 0, 108));
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    case 7:
-                        {
-                            // R2 or D4
-
-                            currentProperty.TargetPosition = new Vector3(115, 0, 100);
-                            targetPositionConfirmed = true;
-
-                            break;
-
-                        }
-
-                    default:
-                        {
-                            // Just a placeholder and should never be reached.
-
-                            break;
-
-                        }
-
-                }
-
-            }
-
-            else
             {
 
                 var temporaryProperty = accessory.Data.GetDefaultDrawProperties();
@@ -7302,13 +6714,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 {
 
                     phase3_locomotive_initialSafePositionOfTheLeftGroup = position1OfTheLast;
-                    phase3_locomotive_leftPositionToStackOfTheSecondRound = new Vector3((position1OfTheLast.X - 100) / 3 + 100,
-                                                                                      position1OfTheLast.Y,
-                                                                                      (position1OfTheLast.Z - 100) / 3 + 100);
+                    new Vector3((position1OfTheLast.X - 100) / 3 + 100,
+                        position1OfTheLast.Y,
+                        (position1OfTheLast.Z - 100) / 3 + 100);
                     phase3_locomotive_initialSafePositionOfTheRightGroup = position2OfTheLast;
-                    phase3_locomotive_rightPositionToStackOfTheSecondRound = new Vector3((position2OfTheLast.X - 100) / 3 + 100,
-                                                                                       position2OfTheLast.Y,
-                                                                                       (position2OfTheLast.Z - 100) / 3 + 100);
+                    new Vector3((position2OfTheLast.X - 100) / 3 + 100,
+                        position2OfTheLast.Y,
+                        (position2OfTheLast.Z - 100) / 3 + 100);
 
                     phase3_hasConfirmedInitialSafePositions = true;
 
@@ -7324,13 +6736,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 {
 
                     phase3_locomotive_initialSafePositionOfTheLeftGroup = position2OfTheLast;
-                    phase3_locomotive_leftPositionToStackOfTheSecondRound = new Vector3((position2OfTheLast.X - 100) / 3 + 100,
-                                                                                      position2OfTheLast.Y,
-                                                                                      (position2OfTheLast.Z - 100) / 3 + 100);
+                    new Vector3((position2OfTheLast.X - 100) / 3 + 100,
+                        position2OfTheLast.Y,
+                        (position2OfTheLast.Z - 100) / 3 + 100);
                     phase3_locomotive_initialSafePositionOfTheRightGroup = position1OfTheLast;
-                    phase3_locomotive_rightPositionToStackOfTheSecondRound = new Vector3((position1OfTheLast.X - 100) / 3 + 100,
-                                                                                       position1OfTheLast.Y,
-                                                                                       (position1OfTheLast.Z - 100) / 3 + 100);
+                    new Vector3((position1OfTheLast.X - 100) / 3 + 100,
+                        position1OfTheLast.Y,
+                        (position1OfTheLast.Z - 100) / 3 + 100);
 
                     phase3_hasConfirmedInitialSafePositions = true;
 
@@ -7513,7 +6925,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             currentProperty.DestoryAt = 6500;
 
 
-            if (Phase3_Strat_Of_The_Second_Half == Phase3_Strats_Of_The_Second_Half.High_Priority_As_Locomotives_车头低换法_MMW)
             {
 
                 bool goLeft = phase3_locomotive_shouldGoLeft(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
@@ -8588,7 +7999,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             System.Threading.Thread.MemoryBarrier();
 
             Vector3 dealpos = new();
-            if (Phase4_Strat_Of_The_First_Half == Phase4_Strats_Of_The_First_Half.Single_Swap_Baiting_After_先单换再引导_莫灵喵与MMW)
             {
                 var tIndex = P4Tether[0] == -1 ? 1 : 0;
                 var nIndex = P4Tether[2] == -1 ? 3 : 2;
@@ -8631,7 +8041,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                     downGroup.Add(nIndex);
                     downGroup.Add(d2Index);
                 }
-                //Phase4_Strat_Of_The_First_Half
                 var stack1 = P4Stack.IndexOf(1);
                 var stack2 = P4Stack.LastIndexOf(1);
                 var tetherStack = P4Tether[stack1] == -1 ? stack2 : stack1;
@@ -8775,7 +8184,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 downGroup.Add(nIndex);
                 downGroup.Add(d2Index);
             }
-            //Phase4_Strat_Of_The_First_Half
             var stack1 = P4Stack.IndexOf(1);
             var stack2 = P4Stack.LastIndexOf(1);
             var tetherStack = P4Tether[stack1] == -1 ? stack2 : stack1;
@@ -9063,12 +8471,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             _cry.Init(accessory, _pd);
             _events = [.. Enumerable.Range(0, 20).Select(_ => new System.Threading.ManualResetEvent(false))];
 
-            List<int> pdList = Phase4_Priority_Of_The_Players_With_Wyrmclaw switch
-            {
-                // 数字越小，优先度越高（偏左），默认为HTD顺序。
-                Phase4_Priorities_Of_The_Players_With_Wyrmclaw.In_HTD_Order_按HTD顺序_MMW => [2, 3, 0, 1, 4, 5, 6, 7],
-                _ => [2, 3, 0, 1, 4, 5, 6, 7],
-            };
+
+            List<int> pdList = [2, 3, 0, 1, 4, 5, 6, 7];
             _pd.AddPriorities(pdList);
 
             P4ClawBuff = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -11671,38 +11075,25 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         if (Enable_Text_Prompts)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.Method.TextInfo("等待挑衅后退避", 2500);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
-
-                                accessory.Method.TextInfo("Wait for provocation then shirk", 2500);
-
-                            }
 
                         }
 
                         if (Enable_Vanilla_TTS || Enable_Daily_Routines_TTS)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.TTS("等待挑衅后退避", Enable_Vanilla_TTS, Enable_Daily_Routines_TTS);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
 
-                                accessory.TTS("Wait for provocation then shirk", Enable_Vanilla_TTS, Enable_Daily_Routines_TTS);
-
-                            }
 
                         }
 
@@ -11758,38 +11149,24 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         if (Enable_Text_Prompts)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.Method.TextInfo("立即挑衅！", 2500);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
-
-                                accessory.Method.TextInfo("Now provoke!", 2500);
-
-                            }
 
                         }
 
                         if (Enable_Vanilla_TTS || Enable_Daily_Routines_TTS)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.TTS("立即挑衅！", Enable_Vanilla_TTS, Enable_Daily_Routines_TTS);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
-
-                                accessory.TTS("Now provoke!", Enable_Vanilla_TTS, Enable_Daily_Routines_TTS);
-
-                            }
 
                         }
 
@@ -11868,19 +11245,12 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         if (Enable_Text_Prompts)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.Method.TextInfo("等待挑衅后退避", 2500);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
-
-                                accessory.Method.TextInfo("Wait for provocation then shirk", 2500);
-
-                            }
 
                         }
 
@@ -11955,38 +11325,24 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         if (Enable_Text_Prompts)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.Method.TextInfo("立即挑衅！", 2500);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
-
-                                accessory.Method.TextInfo("Now provoke!", 2500);
-
-                            }
 
                         }
 
                         if (Enable_Vanilla_TTS || Enable_Daily_Routines_TTS)
                         {
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
                             {
 
                                 accessory.TTS("立即挑衅！", Enable_Vanilla_TTS, Enable_Daily_Routines_TTS);
 
                             }
 
-                            if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                            {
-
-                                accessory.TTS("Now provoke!", Enable_Vanilla_TTS, Enable_Daily_Routines_TTS);
-
-                            }
 
                         }
 
