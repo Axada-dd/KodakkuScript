@@ -1,2 +1,13 @@
-{
-}
+[
+  {
+    "Name": "神兵三连桶",
+    "Guid": "c32af9b6-d9ad-45cc-ab59-260b3b350090",
+    "Version": "0.0.1",
+    "Author": "嗨呀",
+    "DownloadUrl": "https://raw.githubusercontent.com/Axada-dd/KodakkuScript/refs/heads/master/%E7%A5%9E%E5%85%B5%E4%B8%89%E8%BF%9E%E6%A1%B6.cs",
+    "UpdateInfo": ".01 暂时只有三连桶",
+    "TerritoryIds": [
+      777
+    ]
+  },
+]
