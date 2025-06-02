@@ -8195,18 +8195,12 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             if (!Phase4_FJT) return;
             if (@event["TargetId"] != accessory.Data.Me.ToString()) return;
             List<string> magicList = ["贤者", "占星术士", "学者", "白魔法师", "绘灵法师", "黑魔法师", "召唤师", "赤魔法师"];
-            var myJob = accessory.GetCharJob(accessory.Data.Me);
+            var myJob = accessory.GetCharJob(accessory.Data.Me,true);
             var isMagic = magicList.Contains(myJob);
 
-            _ = Task.Run(async () =>
-            {
-                await Task.Delay(5000);
-                /*accessory.Method.SendChat($"/ac 亲疏自行");
-                accessory.Method.SendChat($"/ac 沉稳咏唱");*/
-                accessory.Method.SendChat($"/e 防击退");
-                accessory.Method.UseAction(accessory.Data.Me, isMagic ? 7559u : 7548u);
-            });
-            //System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
+            accessory.Method.SendChat($"/e 防击退");
+            accessory.Method.UseAction(accessory.Data.Me, isMagic ? 7559u : 7548u);
 
         }
         [ScriptMethod(name: "P4_时间结晶_Buff收集", eventType: EventTypeEnum.StatusAdd, eventCondition: ["StatusID:regex:^(326[34]|2454|246[0123])$"], userControl: false)]
