@@ -72,7 +72,8 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
         public ScriptColor Phase3_Colour_Of_Rough_Guidance { get; set; }
         public ScriptColor Phase3_Colour_Of_The_Penultimate_Apocalypse { get; set; }
-        [UserSetting("P3自动面向")] public bool Phase3_Auto_Face { get; set; } = true;
+        [UserSetting("P3自动面向")] 
+        public bool Phase3_Auto_Face { get; set; } = true;
         [UserSetting("P3二运 引导暗夜舞蹈(最远死刑)的T")]
         public Tanks Phase3_Tank_Who_Baits_Darkest_Dance { get; set; } = Tanks.MT;
         public ScriptColor Phase3_Colour_Of_Darkest_Dance { get; set; }
@@ -5592,7 +5593,18 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
             }
         }
-
+        [ScriptMethod(name: "眩晕时自动面向", eventType: EventTypeEnum.StatusAdd, eventCondition: ["StatusID:4163"],
+            userControl: true, suppress: 10000)]
+        public void UlrAutoFace(Event ev, ScriptAccessory sa)
+        {
+            if (parse != 31) return;
+            if (!Phase3_Auto_Face) return;
+            var myDir = _ulr.GetDirection(sa.GetMyIndex());
+            sa.Log.Debug($"眩晕，触发自动面向。");
+            var rot = (myDir * 45f).DegToRad().Game2Logic();
+            sa.Method.SendChat($"/e 旋转角度：{rot}");
+            sa.SetRotation(sa.Data.MyObject, rot);
+        }
         [ScriptMethod(name: "Phase3 Prompt Before Shell Crusher 破盾一击前提示",
             eventType: EventTypeEnum.StartCasting,
             eventCondition: ["ActionId:40286"])]
@@ -5901,16 +5913,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
 
         }
-        [ScriptMethod(name: "眩晕时自动面向", eventType: EventTypeEnum.StatusAdd, eventCondition: ["StatusID:4163"],
-            userControl: true, suppress: 10000)]
-        public void UlrAutoFace(Event ev, ScriptAccessory sa)
-        {
-            if (parse != 32) return;
-            if (!Phase3_Auto_Face) return;
-            var myDir = _ulr.GetDirection(sa.GetMyIndex());
-            sa.Log.Debug($"眩晕，触发自动面向。");
-            sa.SetRotation(sa.Data.MyObject, (myDir * 45f).DegToRad().Game2Logic());
-        }
+
         [ScriptMethod(name: "Phase3 Prompt Before Dark Water III 暗黑狂水(分摊)前提示",
             eventType: EventTypeEnum.StatusAdd,
             eventCondition: ["StatusID:2461"],
