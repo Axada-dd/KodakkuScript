@@ -8193,11 +8193,11 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
         {
             if (parse != 43) return;
             if (!Phase4_FJT) return;
-            if (@event["TargetId"] != accessory.Data.Me.ToString()) return;
+            if (!ParseObjectId(@event["TargetId"], out var tid)) return;
+            if(tid!= accessory.Data.Me) return;
             List<string> magicList = ["贤者", "占星术士", "学者", "白魔法师", "绘灵法师", "黑魔法师", "召唤师", "赤魔法师"];
             var myJob = accessory.GetCharJob(accessory.Data.Me,true);
             var isMagic = magicList.Contains(myJob);
-
             System.Threading.Thread.Sleep(5000);
             accessory.Method.SendChat($"/e 防击退");
             accessory.Method.UseAction(accessory.Data.Me, isMagic ? 7559u : 7548u);
