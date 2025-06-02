@@ -19,7 +19,7 @@
     "Author": "Karlin",
     "Repo": "",
     "DownloadUrl": "https://raw.githubusercontent.com/Axada-dd/KodakkuScript/refs/heads/master/Karlin%E7%9A%84%E7%BB%9D%E4%BC%8A%E7%94%B8%E8%84%9A%E6%9C%AC%20(%E7%81%B5%E8%A7%86%E6%94%B9%E8%A3%85%E7%89%88)%20(%E5%97%A8%E5%91%80%E8%87%AA%E7%94%A8%E4%BF%AE%E6%94%B9)_Karlin%20%26%20Cicero.cs",
-    "Note": "",
+    "Note": "***** Please read the note here carefully before running the script! *****\n***** 请在使用此脚本前仔细阅读此处的说明! *****\n\n使用国服野队通用攻略，\nP1 MMW双竖，  P2 镜子找最近的，光爆两个攻略都有，\nP3 MMW, P4 人群  二运可以自动标记，根据标记指路，只有Y字击退\nP5 挡刀 T近战远程N\n\n\n\n更新了P3眩晕后自动调整面向",
     "UpdateInfo": ".01 版本更新了P3眩晕后自动调整面向",
     "TerritoryIds": [
       1238

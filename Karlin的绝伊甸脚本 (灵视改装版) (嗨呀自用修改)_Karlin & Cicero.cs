@@ -415,7 +415,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             if (Phase4_Mark_Players_During_The_Second_Half) accessory.Method.MarkClear();
 
-            accessory.Method.SendChat($"获取角色职业：{accessory.GetCharJob(accessory.Data.Me, true)}");
+            accessory.Method.SendChat($"/e 获取角色职业：{accessory.GetCharJob(accessory.Data.Me, true)}");
 
             #region User_SettingsInit_用户设置初始化
 
