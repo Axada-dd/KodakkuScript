@@ -596,14 +596,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             if (!ParseObjectId(@event["SourceId"], out var sid)) return;
             foreach (var pm in accessory.Data.PartyList)
             {
-                var dp = accessory.Data.GetDefaultDrawProperties();
-                dp.Name = "P1_八方雷火_引导扇形";
-                dp.Scale = new(60);
-                dp.Radian = float.Pi / 8;
-                dp.Owner = sid;
-                dp.TargetObject = pm;
-                dp.Color = accessory.Data.DefaultDangerColor;
-                dp.DestoryAt = 7000;
+                var dp = accessory.DrawFan(sid, pm, float.Pi / 8, 0, 7000, "P1_八方雷火_引导扇形");
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Fan, dp);
             }
 
@@ -615,39 +608,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             if (parse != 1) return;
             if (!ParseObjectId(@event["SourceId"], out var sid)) return;
             if (!float.TryParse(@event["SourceRotation"], out var rot)) return;
-            var dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_八方雷火_后续扇形1";
-            dp.Scale = new(60);
-            dp.FixRotation = true;
-            dp.Rotation = rot;
-            dp.Radian = float.Pi / 8;
-            dp.Owner = sid;
-            dp.Color = accessory.Data.DefaultDangerColor;
-            dp.DestoryAt = dur;
+            var dp = accessory.DrawFanRotation("P1_八方雷火_后续扇形1", 60, float.Pi / 8, rot, sid, 0, dur);
             accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Fan, dp);
 
-            dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_八方雷火_后续扇形2";
-            dp.Scale = new(60);
-            dp.Radian = float.Pi / 8;
-            dp.FixRotation = true;
-            dp.Rotation = rot + float.Pi / -8;
-            dp.Owner = sid;
-            dp.Color = accessory.Data.DefaultDangerColor;
-            dp.Delay = 2000;
-            dp.DestoryAt = dur;
+            dp = accessory.DrawFanRotation("P1_八方雷火_后续扇形2", 60, float.Pi / 8, rot + float.Pi / -8, sid, 2000, dur);
             accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Fan, dp);
 
-            dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_八方雷火_后续扇形3";
-            dp.Scale = new(60);
-            dp.FixRotation = true;
-            dp.Rotation = rot + float.Pi / -4;
-            dp.Radian = float.Pi / 8;
-            dp.Owner = sid;
-            dp.Color = accessory.Data.DefaultDangerColor;
-            dp.Delay = 4000;
-            dp.DestoryAt = dur;
+            dp = accessory.DrawFanRotation("P1_八方雷火_后续扇形3", 60, float.Pi / 8, rot + float.Pi / -4, sid, 4000, dur);
             accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Fan, dp);
 
         }
@@ -662,23 +629,11 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             {
                 foreach (var pm in accessory.Data.PartyList)
                 {
-                    var dp = accessory.Data.GetDefaultDrawProperties();
-                    dp.Name = "P1_八方雷火_分散";
-                    dp.Scale = new(6);
-                    dp.Owner = pm;
-                    dp.Color = accessory.Data.DefaultDangerColor;
-                    dp.Delay = 5000;
-                    dp.DestoryAt = 4000;
+                    var dp = accessory.DrawCircle("P1_八方雷火_分散", 6, pm, 5000, 4000);
                     accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
                 }
-
-                {
-
-                    prompt = "分散";
-
-                }
-
-
+                prompt = "分散";
+                
             }
             else
             {
@@ -691,21 +646,10 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                     var ismygroup = myindex == i || group[i] == myindex;
 
-                    var dp = accessory.Data.GetDefaultDrawProperties();
-                    dp.Name = "P1_八方雷火_分摊";
-                    dp.Scale = new(6);
-                    dp.Owner = accessory.Data.PartyList[i];
-                    dp.Color = ismygroup ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
-                    dp.Delay = 5000;
-                    dp.DestoryAt = 4000;
+                    var dp = accessory.DrawCircle("P1_八方雷火_分摊", 6, accessory.Data.PartyList[i], 5000, 4000, ismygroup);
                     accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
                 }
-
-                {
-
-                    prompt = "分摊";
-
-                }
+                prompt = "分摊";
 
             }
 
@@ -749,14 +693,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             var isTH = myindex == 0 || myindex == 1 || myindex == 2 || myindex == 3;
             var mPosEnd = RotatePoint(outPoint ? new(100, 0, 87) : new(100, 0, 95), new(100, 0, 100), float.Pi / 4 * rot8);
             var nextPos = RotatePoint(mPosEnd, new(100, 0, 100), isTH ? -float.Pi / 8 : float.Pi / 8);
-            var dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_八方雷火_引导位置";
-            dp.Scale = new(2);
-            dp.Owner = accessory.Data.Me;
-            dp.TargetPosition = mPosEnd;
-            dp.ScaleMode |= ScaleMode.YByDistance;
-            dp.Color = accessory.Data.DefaultSafeColor;
-            dp.DestoryAt = 7000;
+            var dp = accessory.DrawGuidance(accessory.Data.Me,mPosEnd,0,7000,"P1_八方雷火_引导位置");
             accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
 
 
@@ -769,15 +706,9 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             if (!int.TryParse(@event["DurationMilliseconds"], out var dur)) return;
             string prompt = "";
 
-            var dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_T死刑Buff爆炸1";
-            dp.Scale = new(10);
-            dp.Owner = tid;
-            dp.Color = accessory.Data.DefaultDangerColor;
-            dp.Delay = dur - 5000;
-            dp.DestoryAt = 5000;
+            var dp = accessory.DrawCircle("P1_T死刑Buff爆炸1", 10, tid, dur - 5000, 5000);
             accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
-
+            
             dp = accessory.Data.GetDefaultDrawProperties();
             dp.Name = "P1_T死刑Buff爆炸2";
             dp.Scale = new(10);
@@ -869,15 +800,12 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 obj = accessory.Data.Objects.SearchByEntityId((uint)sid);
             } while (obj == null);
 
-            var dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_雾龙范围";
-            dp.Scale = new(16, 50);
-            dp.Owner = sid;
-            dp.Color = accessory.Data.DefaultDangerColor;
-            dp.DestoryAt = 9000;
+            var dp = accessory.DrawRect("P1_雾龙范围", new Vector2(16, 50), sid, 0, 9000);
             accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Rect, dp);
 
         }
+
+
         [ScriptMethod(name: "P1_雾龙_分散分摊", eventType: EventTypeEnum.ActionEffect, eventCondition: ["ActionId:regex:^(4015[45])$"])]
         public void P1_雾龙_分散分摊(Event @event, ScriptAccessory accessory)
         {
@@ -888,29 +816,11 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             {
                 foreach (var pm in accessory.Data.PartyList)
                 {
-                    var dp = accessory.Data.GetDefaultDrawProperties();
-                    dp.Name = "P1_雾龙_分散";
-                    dp.Scale = new(5);
-                    dp.Owner = pm;
-                    dp.Color = accessory.Data.DefaultDangerColor;
-                    dp.Delay = 10000;
-                    dp.DestoryAt = 5000;
+                    var dp = accessory.DrawCircle("P1_雾龙_分散", 5,pm,10000,5000);
                     accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
                 }
 
-                if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
-                {
-
-                    prompt = "分散";
-
-                }
-
-                if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                {
-
-                    prompt = "Spread";
-
-                }
+                prompt = "分散";
 
             }
             else
@@ -920,37 +830,15 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
                 var isH1group = h1group.Contains(myindex);
 
-                var dp = accessory.Data.GetDefaultDrawProperties();
-                dp.Name = "P1_雾龙_分摊1";
-                dp.Scale = new(6);
-                dp.Owner = accessory.Data.PartyList[2];
-                dp.Color = isH1group ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
-                dp.Delay = 10000;
-                dp.DestoryAt = 5000;
+                var dp = accessory.DrawCircle("P1_雾龙_分摊1",6,accessory.Data.PartyList[2],10000,5000,isH1group);
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
 
-                dp = accessory.Data.GetDefaultDrawProperties();
-                dp.Name = "P1_雾龙_分摊2";
-                dp.Scale = new(6);
-                dp.Owner = accessory.Data.PartyList[3];
-                dp.Color = !isH1group ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
-                dp.Delay = 10000;
-                dp.DestoryAt = 5000;
+                dp = accessory.DrawCircle("P1_雾龙_分摊2",6,accessory.Data.PartyList[3],10000,5000,!isH1group);
+
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
 
-                if (Language_Of_Prompts == Languages_Of_Prompts.Simplified_Chinese_简体中文)
-                {
+                prompt = "分摊";
 
-                    prompt = "分摊";
-
-                }
-
-                if (Language_Of_Prompts == Languages_Of_Prompts.English_英文)
-                {
-
-                    prompt = "Stack";
-
-                }
 
             }
 
@@ -1032,20 +920,10 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             }
 
-            var currentProperty = accessory.Data.GetDefaultDrawProperties();
-
-            currentProperty.Name = "Phase1_Standby_Position_Of_Utopian_Sky_乐园绝技待机位置";
-            currentProperty.Scale = new(2);
-            currentProperty.Owner = accessory.Data.Me;
-            currentProperty.TargetPosition = myPosition;
-            currentProperty.ScaleMode |= ScaleMode.YByDistance;
-            currentProperty.Color = accessory.Data.DefaultSafeColor;
-            currentProperty.DestoryAt = 9000;
+            var currentProperty = accessory.DrawGuidance(accessory.Data.Me, myPosition, 0, 9000,
+                "Phase1_Standby_Position_Of_Utopian_Sky_乐园绝技待机位置");
 
             accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, currentProperty);
-
-
-
 
         }
 
@@ -1076,14 +954,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         };
                         var mPosEnd = RotatePoint(new(100, 0, 84), new(100, 0, 100), float.Pi / 4 * rot8);
 
-                        var dp = accessory.Data.GetDefaultDrawProperties();
-                        dp.Name = "P1_雾龙_分摊处理位置";
-                        dp.Scale = new(2);
-                        dp.Owner = accessory.Data.Me;
-                        dp.TargetPosition = mPosEnd;
-                        dp.ScaleMode |= ScaleMode.YByDistance;
-                        dp.Color = accessory.Data.DefaultSafeColor;
-                        dp.DestoryAt = 9000;
+                        var dp = accessory.DrawGuidance(accessory.Data.Me, mPosEnd, 0, 9000, "P1_雾龙_处理位置");
                         accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
 
 
@@ -1120,14 +991,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                         };
                         var mPosEnd = RotatePoint(myPosA, new(100, 0, 100), float.Pi / 4 * rot8);
 
-                        var dp = accessory.Data.GetDefaultDrawProperties();
-                        dp.Name = "P1_雾龙_分散处理位置";
-                        dp.Scale = new(2);
-                        dp.Owner = accessory.Data.Me;
-                        dp.TargetPosition = mPosEnd;
-                        dp.ScaleMode |= ScaleMode.YByDistance;
-                        dp.Color = accessory.Data.DefaultSafeColor;
-                        dp.DestoryAt = 9000;
+                        var dp = accessory.DrawGuidance(accessory.Data.Me, mPosEnd, 0, 9000, "P1_雾龙_处理位置");
                         accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
 
                     }
@@ -1264,13 +1128,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             if (!ParseObjectId(@evt["SourceId"], out var sid)) return;
             //var sid = evt.SourceId();
             var delay = 4000;
-            var dp = sa.Data.GetDefaultDrawProperties();
-            dp.Name = "P1-乐园绝技-光轮范围";
-            dp.Owner = sid;
-            dp.Scale = new(evt["ActionId"] == "40152" ? 5 : 10);
-            dp.Color = sa.Data.DefaultDangerColor;
-            dp.Delay = delay;
-            dp.DestoryAt = 8000 - delay;
+            var dp = sa.DrawCircle("P1-乐园绝技-光轮范围", evt["ActionId"] == "40152" ? 5 : 10, sid, delay, 8000-delay);
             sa.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, dp);
         }
 
@@ -1372,25 +1230,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                membersOfTheNorthGroup.Count != 4)
             {
 
-                var currentProperty = accessory.Data.GetDefaultDrawProperties();
-
-                currentProperty.Name = "Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围";
-                currentProperty.Scale = new(6);
-                currentProperty.Owner = accessory.Data.PartyList[highPriorityStack];
-                currentProperty.Color = accessory.Data.DefaultDangerColor;
-                currentProperty.Delay = 6000;
-                currentProperty.DestoryAt = 5000;
+                var currentProperty = accessory.DrawCircle("Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围",
+                    6,accessory.Data.PartyList[highPriorityStack],6000,5000);
 
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, currentProperty);
 
-                currentProperty = accessory.Data.GetDefaultDrawProperties();
-
-                currentProperty.Name = "Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围";
-                currentProperty.Scale = new(6);
-                currentProperty.Owner = accessory.Data.PartyList[lowPriorityStack];
-                currentProperty.Color = accessory.Data.DefaultDangerColor;
-                currentProperty.Delay = 6000;
-                currentProperty.DestoryAt = 5000;
+                currentProperty = accessory.DrawCircle("Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围",
+                    6,accessory.Data.PartyList[lowPriorityStack],6000,5000);
 
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, currentProperty);
 
@@ -1400,40 +1246,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             {
 
                 bool inTheNorthGroup = membersOfTheNorthGroup.Contains(accessory.Data.PartyList.IndexOf(accessory.Data.Me));
-                var currentProperty = accessory.Data.GetDefaultDrawProperties();
-
-                currentProperty.Name = "Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围";
-                currentProperty.Scale = new(6);
-                currentProperty.Owner = accessory.Data.PartyList[highPriorityStack];
-                currentProperty.Delay = 6000;
-                currentProperty.DestoryAt = 5000;
-
-                currentProperty.Color = inTheNorthGroup ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
+                var currentProperty = accessory.DrawCircle("Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围",
+                    6, accessory.Data.PartyList[highPriorityStack], 6000, 5000, inTheNorthGroup);
 
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, currentProperty);
 
-                currentProperty = accessory.Data.GetDefaultDrawProperties();
-
-                currentProperty.Name = "Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围";
-                currentProperty.Scale = new(6);
-                currentProperty.Owner = accessory.Data.PartyList[lowPriorityStack];
-                currentProperty.Delay = 6000;
-                currentProperty.DestoryAt = 5000;
-
-                if (inTheNorthGroup)
-                {
-
-                    currentProperty.Color = accessory.Data.DefaultDangerColor;
-
-                }
-
-                else
-                {
-
-                    currentProperty.Color = accessory.Data.DefaultSafeColor;
-
-                }
-
+                currentProperty = accessory.DrawCircle("Phase1_Stack_Range_Of_Turn_Of_The_Heavens_光轮召唤分摊范围",
+                    6, accessory.Data.PartyList[lowPriorityStack], 6000, 5000, !inTheNorthGroup);
                 accessory.Method.SendDraw(DrawModeEnum.Default, DrawTypeEnum.Circle, currentProperty);
 
             }
@@ -1466,35 +1285,13 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
             var myindex = accessory.Data.PartyList.IndexOf(accessory.Data.Me);
             var dealpos1 = new Vector3(atEast ? 105.5f : 94.5f, 0, upGroup.Contains(myindex) ? 93 : 107);
             var dealpos2 = new Vector3(atEast ? 102 : 98, 0, upGroup.Contains(myindex) ? 93 : 107);
-            var dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_转轮召_击退处理位置1";
-            dp.Scale = new(2);
-            dp.Owner = accessory.Data.Me;
-            dp.TargetPosition = dealpos1;
-            dp.ScaleMode |= ScaleMode.YByDistance;
-            dp.Color = accessory.Data.DefaultSafeColor;
-            dp.DestoryAt = 4000;
+            var dp = accessory.DrawGuidance(accessory.Data.Me, dealpos1, 0, 4000, "P1_转轮召_击退处理位置1");
             accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
 
-            dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_转轮召_击退处理位置2";
-            dp.Scale = new(2);
-            dp.Position = dealpos1;
-            dp.TargetPosition = dealpos2;
-            dp.ScaleMode |= ScaleMode.YByDistance;
-            dp.Color = accessory.Data.DefaultSafeColor;
-            dp.DestoryAt = 4000;
+            dp = accessory.DrawGuidance(dealpos1, dealpos2, 0, 4000, "P1_转轮召_击退处理位置2");
             accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
 
-            dp = accessory.Data.GetDefaultDrawProperties();
-            dp.Name = "P1_转轮召_击退处理位置3";
-            dp.Scale = new(2);
-            dp.Owner = accessory.Data.Me;
-            dp.TargetPosition = dealpos2;
-            dp.ScaleMode |= ScaleMode.YByDistance;
-            dp.Color = accessory.Data.DefaultSafeColor;
-            dp.Delay = 4000;
-            dp.DestoryAt = 2000;
+            dp = accessory.DrawGuidance(accessory.Data.Me, dealpos2, 4000, 2000, "P1_转轮召_击退处理位置3");
             accessory.Method.SendDraw(DrawModeEnum.Imgui, DrawTypeEnum.Displacement, dp);
 
 
@@ -1672,29 +1469,7 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 bool isFireTether = (phase1_tetheredPlayersDuringFallOfFaith.Last() < 20);
                 string prompt = "";
 
-                if (isFireTether)
-                {
-
-                    {
-
-                        prompt = "火";
-
-                    }
-
-
-                }
-
-                else
-                {
-
-                    {
-
-                        prompt = "雷";
-
-                    }
-
-
-                }
+                prompt = isFireTether ? "火" : "雷";
 
                 if (!prompt.Equals(""))
                 {
@@ -1750,7 +1525,6 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
 
             if (isFireTether)
             {
-
                 currentProperty = accessory.Data.GetDefaultDrawProperties();
 
                 currentProperty.Name = "Phase1_Range_Of_The_Fire_Tether_火连线的范围";
@@ -13390,6 +13164,138 @@ namespace CicerosKodakkuAssist.FuturesRewrittenUltimate
                 return item?.ToString() ?? "";
             }));
         }
+		    /// <summary>
+    /// 返回圆形dp，跟随owner或者固定position，可修改 dp.Owner, dp.Scale
+    /// </summary>
+    /// <param name="ownerObj">跟随目标，或者固定position</param>
+    /// <param name="scale">圆圈尺寸</param>
+    /// <param name="delay">延时delay ms出现</param>
+    /// <param name="destroy">绘图自出现起，经destroy ms消失</param>
+    /// <param name="name">绘图名称</param>
+    /// <param name="byTime">动画效果随时间填充</param>
+    /// <param name="accessory"></param>
+    /// <returns></returns>
+    public static DrawPropertiesEdit DrawCircle(this ScriptAccessory accessory, 
+                string name, float scale, object ownerObj,  int delay, int destroy,  
+                bool isSafe = false, bool byTime = false)
+    {
+        var dp = accessory.Data.GetDefaultDrawProperties();
+        dp.Name = name;
+        dp.Scale = new Vector2(scale);
+        dp.Color = isSafe?accessory.Data.DefaultSafeColor:accessory.Data.DefaultDangerColor;
+        dp.Delay = delay;
+        dp.DestoryAt = destroy;
+        dp.ScaleMode |= byTime ? ScaleMode.ByTime : ScaleMode.None;
+        switch (ownerObj)
+        {
+            case uint sid:
+                dp.Owner = sid;
+                break;
+            case ulong sid:
+                dp.Owner = sid;
+                break;
+            case Vector3 spos:
+                dp.Position = spos;
+                break;
+            default:
+                throw new ArgumentException("ownerObj的目标类型输入错误");
+        }
+        return dp;
+    }
+	    /// <summary>
+    /// 返回箭头指引相关dp
+    /// </summary>
+    /// <param name="accessory"></param>
+    /// <param name="ownerObj">箭头起始，可输入uint或Vector3</param>
+    /// <param name="targetObj">箭头指向目标，可输入uint或Vector3，为0则无目标</param>
+    /// <param name="delay">绘图出现延时</param>
+    /// <param name="destroy">绘图消失时间</param>
+    /// <param name="name">绘图名称</param>
+    /// <param name="scale">箭头宽度</param>
+    /// <param name="isSafe">使用安全色</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static DrawPropertiesEdit DrawGuidance(this ScriptAccessory accessory,
+        object ownerObj, object targetObj, int delay, int destroy, string name,  float scale = 2f, bool isSafe = true)
+    {
+        var dp = accessory.Data.GetDefaultDrawProperties();
+        dp.Name = name;
+        dp.Scale = new Vector2(scale);
+        dp.ScaleMode |= ScaleMode.YByDistance;
+        dp.Color = isSafe ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
+        dp.Delay = delay;
+        dp.DestoryAt = destroy;
+
+        switch (ownerObj)
+        {
+            case uint sid:
+                dp.Owner = sid;
+                break;
+            case ulong sid:
+                dp.Owner = sid;
+                break;
+            case Vector3 spos:
+                dp.Position = spos;
+                break;
+            default:
+                throw new ArgumentException("ownerObj的目标类型输入错误");
+        }
+
+        switch (targetObj)
+        {
+            case uint tid:
+                if (tid != 0) dp.TargetObject = tid;
+                break;
+            case ulong tid:
+                if (tid != 0) dp.TargetObject = tid;
+                break;
+            case Vector3 tpos:
+                dp.TargetPosition = tpos;
+                break;
+        }
+
+        return dp;
+    }
+	public static DrawPropertiesEdit DrawFan(this ScriptAccessory accessory,ulong owner, ulong? target, float radian,int delay, int destroy,string name,float scale =60,bool isSafe = false)
+	{
+		var dp = accessory.Data.GetDefaultDrawProperties();
+		dp.Name = name;
+		dp.Scale = new(scale);
+		dp.Radian = radian;
+		dp.Owner = owner;
+		if(target!=null)dp.TargetObject=(ulong)target;
+		dp.Color = isSafe ? accessory.Data.DefaultSafeColor:accessory.Data.DefaultDangerColor;
+		dp.DestoryAt = destroy;
+		dp.Delay = delay;
+		return dp;
+	}
+
+    public static DrawPropertiesEdit DrawRect(this ScriptAccessory accessory, String name, Vector2 sclae, ulong owner, int delay, int destory, bool isSafe = false)
+    {
+        var dp = accessory.Data.GetDefaultDrawProperties();
+        dp.Name = name;
+        dp.Scale = sclae;
+        dp.Owner = owner;
+        dp.Color = isSafe ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
+        dp.Delay = delay;
+        dp.DestoryAt = destory;
+        return dp;
+    }
+    public static DrawPropertiesEdit DrawFanRotation (this ScriptAccessory accessory, 
+        string name, float scale, float radian, float rotation, ulong owner, int delay, int destroy, bool isSafe = false)
+    {
+        var dp = accessory.Data.GetDefaultDrawProperties();
+        dp.Name = name;
+        dp.Scale = new(scale);
+        dp.FixRotation=true;
+        dp.Radian = radian;
+        dp.Rotation = rotation;
+        dp.Owner = owner;
+        dp.Delay = delay;
+        dp.DestoryAt = destroy;
+        dp.Color = isSafe ? accessory.Data.DefaultSafeColor : accessory.Data.DefaultDangerColor;
+        return dp;
+    }
     }
 
     #endregion 绘图函数
